@@ -1,0 +1,23 @@
+# Python temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+
+# Environment & Dependencies
+.env
+venv/
+env/
+.vercel/
+node_modules/
+remotion-repo/

@@ -1,0 +1,16 @@
+{
+  "dataset_type": "Real-Time Thevenin 2-RC Battery Telemetry",
+  "sample_count": 3600,
+  "soc_mae": 0.8525,
+  "soh_mae": 0.0094,
+  "rul_mae": 3.36,
+  "soc_rmse": 0.9955,
+  "soh_rmse": 0.0105,
+  "rul_rmse": 3.75,
+  "r2_scores": {
+    "soc_r2": 0.4389,
+    "soh_r2": -4.0503,
+    "rul_r2": -1.5718
+  },
+  "training_timestamp": "2026-10-25 01:13:15"
+}

@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECOBAT Technologies | Sustainable Power Solutions - Smart AI BMS</title>
+  <link rel="icon" type="image/png" href="assets/ecobat-icon-new.png">
+  
+  <!-- Modern Typography & Chart.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <link rel="stylesheet" href="styles.css?v=3.3.0">
+</head>
+<body>
+
+  <!-- =========================================================
+       VIEW 1: DEDICATED LANDING PAGE (PASTEL HIJAU & CREAM)
+       ========================================================= -->
+  <div id="view-landing" class="app-view active-view">
+    
+    <!-- =========================================================
+         SLICING 1: FLOATING & CUSTOMIZABLE NAVIGATION BAR
+         ========================================================= -->
+    <header class="landing-nav-header floating-navbar" id="landing-navbar">
+      <div class="landing-nav-inner">
+        <div class="brand-group" onclick="showLandingView()" style="cursor: pointer;">
+          <div class="brand-logo-icon brand-logo-img-wrap">
+            <img src="assets/ecobat-icon-new.png" alt="ECOBAT Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-text-col">
+            <h1 class="brand-title">ecobat <span>Technologies</span></h1>
+            <p class="brand-sub">Sustainable Power Solutions • Smart AI BMS</p>
+          </div>
+        </div>
+
+        <nav class="landing-nav-links" id="landing-desktop-links">
+          <a href="#landing-features">Fitur</a>
+          <a href="#landing-mini-simulator">Simulasi Langsung</a>
+          <a href="#landing-pillars">Pilar Arsitektur</a>
+          <a href="#landing-comparison">Komparasi BMS</a>
+          <a href="#landing-calculator">Kalkulator ROI</a>
+          <a href="#landing-standards">Standar ASIL-D</a>
+        </nav>
+
+        <div class="landing-nav-actions">
+          <!-- Hardware Status Badge -->
+          <div class="status-pill status-online hide-on-mobile" style="font-size:0.72rem; padding:5px 12px;" title="Hardware Prototype Gateway Siaga">
+            <span class="status-dot"></span>
+            <span>HW: SIAGA</span>
+          </div>
+
+          <!-- Navbar Size/Style Customizer -->
+          <button class="icon-btn nav-size-btn" onclick="cycleNavbarLayout()" title="Sesuaikan Ukuran Navbar Ngambang (Normal / Ringkas / Lebar)">
+            <span class="nav-size-indicator">⤢</span>
+          </button>
+
+          <!-- Theme toggle -->
+          <button class="icon-btn" onclick="toggleThemeGlobal()" title="Ganti Mode Terang/Gelap">
+            <span class="theme-icon-indicator">🌙</span>
+          </button>
+
+          <button class="btn btn-md btn-pastel-cyan btn-pill landing-cta-top-btn" onclick="quickLoginDemo()" style="font-weight: 700;">
+            <span class="cta-full-text">Masuk ke Dashboard ➔</span>
+            <span class="cta-short-text">Masuk ➔</span>
+          </button>
+
+          <!-- Mobile Hamburger Toggle for Landing Page -->
+          <button class="icon-btn mobile-menu-btn" id="landing-mobile-menu-toggle" onclick="toggleLandingMobileDrawer()" aria-label="Menu Navigasi">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Landing Mobile Drawer -->
+      <div class="mobile-nav-drawer" id="landing-mobile-drawer">
+        <a href="#landing-features" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">✨ Fitur Unggulan</a>
+        <a href="#landing-mini-simulator" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🔋 Simulasi Langsung 60-FPS</a>
+        <a href="#landing-pillars" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🏛️ 4 Pilar Arsitektur</a>
+        <a href="#landing-comparison" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">⚖️ Komparasi Teknis BMS</a>
+        <a href="#landing-calculator" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">💰 Kalkulator ROI Armada</a>
+        <a href="#landing-standards" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🛡️ Standar ISO 26262 ASIL-D</a>
+        <div class="mobile-drawer-actions-row">
+          <div class="status-pill status-online" style="font-size:0.72rem; padding:6px 12px;">
+            <span class="status-dot"></span>
+            <span>HW: SIAGA</span>
+          </div>
+          <button class="btn btn-sm btn-pastel-cyan btn-pill" onclick="closeLandingMobileDrawer(); quickLoginDemo();" style="flex:1; font-weight:700;">
+            🚀 Masuk ke Dashboard ➔
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================
+         SLICING 2: PRODUCT HERO SECTION (VALUE PROP & LOGIN PORTAL)
+         ========================================================= -->
+    <section class="landing-hero">
+      <div class="landing-hero-grid">
+        
+        <!-- Left Column: Vision, Value Proposition & Specs -->
+        <div class="landing-hero-left">
+          <div class="hero-pill-badge">
+            <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#489980;"></span>
+            ECOBAT PLATFORM v3.2 • ENTERPRISE SMART AI BMS
+          </div>
+          
+          <h1 class="landing-hero-title">
+            Manajemen Baterai Cerdas dengan <span>Kecerdasan Buatan</span> & Kontrol Prototipe Real-Time
+          </h1>
+
+          <p class="landing-hero-desc">
+            Platform enterprise mutakhir yang memadukan deep learning multi-output LSTM untuk estimasi SoC/SoH/RUL presisi tinggi, autonomous DQN Reinforcement Learning, lossless active balancing 16-sel seri, serta kendali langsung prototipe hardware mikrokontroler via Web Serial API USB.
+          </p>
+
+          <div class="landing-badges-row">
+            <div class="spec-badge-item">
+              <span>⚡</span> <strong>350.0 V</strong> Nominal Pack
+            </div>
+            <div class="spec-badge-item">
+              <span>🔋</span> <strong>16S Balancer</strong> Active Lossless
+            </div>
+            <div class="spec-badge-item">
+              <span>🤖</span> <strong>99.4% Akurasi</strong> AI SoC/SoH
+            </div>
+            <div class="spec-badge-item">
+              <span>🛡️</span> <strong>ISO 26262</strong> ASIL-D
+            </div>
+            <div class="spec-badge-item">
+              <span>📡</span> <strong>500 kbps</strong> CAN-Bus 2.0B
+            </div>
+            <div class="spec-badge-item">
+              <span>🔌</span> <strong>Web Serial API</strong> Direct USB
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; margin-top:10px; flex-wrap:wrap;">
+            <button class="btn btn-md btn-pastel-cyan btn-pill" onclick="quickLoginDemo()" style="box-shadow: 0 4px 18px rgba(82,137,116,0.35);">
+              🚀 Masuk ke Dashboard Sekarang ➔
+            </button>
+            <a href="#landing-mini-simulator" class="btn btn-md btn-subtle btn-pill" style="text-decoration: none;">
+              🔋 Coba Simulasi Aliran Ion Langsung
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Role Login Portal Card -->
+        <div class="login-portal-card">
+          <div class="login-logo-showcase">
+            <img src="assets/ecobat-logo-new.png" alt="Ecobat - Sustainable Power Solutions" class="login-full-logo-img">
+          </div>
+          <div class="login-card-head">
+            <h3>
+              <span>🔐</span>
+              Portal Masuk Dashboard ECOBAT
+            </h3>
+            <p>Pilih peran pengguna dan masuk langsung ke dashboard monitoring telemetri</p>
+          </div>
+
+          <!-- Role Selector Chips -->
+          <div class="role-chips-group">
+            <button class="role-chip-btn active" id="role-eng" onclick="selectRole('lead_engineer', 'Ir. Amanda Puja', 'Lead EV BMS Engineer')">
+              👨‍💻 Lead Engineer
+            </button>
+            <button class="role-chip-btn" id="role-op" onclick="selectRole('fleet_operator', 'Budi Santoso', 'Operator Armada EV')">
+              🚗 Operator EV
+            </button>
+            <button class="role-chip-btn" id="role-lab" onclick="selectRole('lab_researcher', 'Dr. Hendra Wijaya', 'Peneliti Lab Baterai')">
+              🧪 Peneliti Lab
+            </button>
+          </div>
+
+          <form id="form-login-portal" onsubmit="handleLoginFormSubmit(event)">
+            <div class="form-group-landing">
+              <label for="input-login-id">ID Pengguna / Email Perusahaan</label>
+              <input type="text" id="input-login-id" class="input-landing" value="amanda.puja@ecobat.ai" required>
+            </div>
+
+            <div class="form-group-landing">
+              <label for="input-login-pass">Kata Sandi / Kunci Akses</label>
+              <input type="password" id="input-login-pass" class="input-landing" value="ecobat2026" required>
+            </div>
+
+            <button type="submit" class="btn-login-main">
+              <span>🚀 Masuk ke Dashboard Real-Time</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <p class="login-demo-hint">
+            💡 <strong>Mode Demo Cepat:</strong> Cukup klik tombol <em>"Masuk ke Dashboard Real-Time"</em> untuk langsung mengakses seluruh data telemetri, grafik, dan kontrol prototipe!
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 3: INTERACTIVE LIVE BATTERY SIMULATOR (ON LANDING PAGE)
+         ========================================================= -->
+    <section class="landing-section-wrap" id="landing-mini-simulator" style="padding-top: 10px;">
+      <div class="landing-section-head">
+        <span class="landing-section-tag">SIMULASI LANGSUNG INTERAKTIF</span>
+        <h2 class="landing-section-title">Eksplorasi Dinamika Sel Baterai Tanpa Perlu Login</h2>
+        <p class="landing-section-sub">
+          Uji langsung pergerakan mikroskopis ion lithium (Li⁺) melintasi pori separator membran, aliran elektron eksternal, dan pendaran termal Joule secara interaktif di browser Anda.
+        </p>
+      </div>
+
+      <div class="landing-sim-wrapper">
+        <div class="landing-sim-toolbar">
+          <div class="landing-sim-modes">
+            <button class="landing-mode-btn active" id="btn-mode-discharge" onclick="setLandingSimMode('discharge')">
+              ⚡ Discharge (-45.2 A)
+            </button>
+            <button class="landing-mode-btn" id="btn-mode-charge" onclick="setLandingSimMode('charge')">
+              🔌 Fast Charge (+85.0 A)
+            </button>
+            <button class="landing-mode-btn" id="btn-mode-regen" onclick="setLandingSimMode('regen')">
+              🔄 Regen Braking (+30.0 A)
+            </button>
+            <button class="landing-mode-btn" id="btn-mode-idle" onclick="setLandingSimMode('idle')">
+              ⏸️ Standby Idle (0.0 A)
+            </button>
+          </div>
+
+          <button class="btn btn-sm btn-pastel-cyan btn-pill" onclick="previewBatteryTourFromLanding()">
+            🔍 Buka Suite Animasi Penuh (60-FPS & Tour) ➔
+          </button>
+        </div>
+
+        <!-- Mini Canvas Container -->
+        <div class="landing-sim-canvas-box">
+          <canvas id="landing-mini-canvas" width="1200" height="240"></canvas>
+        </div>
+
+        <!-- 4 Live Metric Readouts -->
+        <div class="landing-sim-metrics-bar">
+          <div class="landing-metric-chip">
+            <span class="label">Tegangan Pack</span>
+            <span class="value" id="sim-mini-volt">350.0 V</span>
+          </div>
+          <div class="landing-metric-chip">
+            <span class="label">Arus Instan</span>
+            <span class="value" id="sim-mini-curr">-45.2 A</span>
+          </div>
+          <div class="landing-metric-chip">
+            <span class="label">State of Charge (SoC)</span>
+            <span class="value" id="sim-mini-soc">64.5%</span>
+          </div>
+          <div class="landing-metric-chip">
+            <span class="label">Active Balancer</span>
+            <span class="value" id="sim-mini-bal" style="font-size:1.05rem;">SIAGA (&lt;14mV)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 4: 4 ENTERPRISE FEATURES HIGHLIGHT
+         ========================================================= -->
+    <section class="landing-section-wrap" id="landing-features" style="padding-top: 40px;">
+      <div class="landing-section-head">
+        <span class="landing-section-tag">FITUR UNGGULAN ENTERPRISE</span>
+        <h2 class="landing-section-title">Solusi Menyeluruh untuk Sistem Baterai EV Generasi Baru</h2>
+        <p class="landing-section-sub">
+          Dirancang untuk insinyur otomotif, pengelola armada kendaraan listrik, dan peneliti baterai untuk meningkatkan masa pakai sel hingga 30% dan mengeliminasi risiko thermal runaway.
+        </p>
+      </div>
+
+      <div class="landing-features-grid-4">
+        <div class="landing-feat-card">
+          <div class="feat-icon-bubble">🔋</div>
+          <div>
+            <h3>Visualisasi Aliran Ion 60-FPS</h3>
+            <p>Simulasi fluks ion lithium (Li⁺) melintasi separator berpori dengan arah dan laju yang sinkron dengan arus telemetri instan baterai.</p>
+          </div>
+          <button class="btn btn-xs btn-subtle" onclick="previewBatteryTourFromLanding()">Lihat Animasi ➔</button>
+        </div>
+
+        <div class="landing-feat-card">
+          <div class="feat-icon-bubble">🔌</div>
+          <div>
+            <h3>Pusat Prototipe Web Serial</h3>
+            <p>Hubungkan microcontroller ESP32 atau Arduino langsung via USB browser untuk kendali kontaktor HV, fan PWM, dan batas arus pengisian.</p>
+          </div>
+          <button class="btn btn-xs btn-subtle" onclick="previewPrototypeFromLanding()">Buka Prototipe ➔</button>
+        </div>
+
+        <div class="landing-feat-card">
+          <div class="feat-icon-bubble">🤖</div>
+          <div>
+            <h3>AI Multi-Output LSTM & DQN</h3>
+            <p>Estimasi presisi tinggi State of Charge (SoC), State of Health (SoH), dan RUL deret waktu dipadukan dengan strategi otonom DQN Reinforcement Learning.</p>
+          </div>
+          <button class="btn btn-xs btn-subtle" onclick="quickLoginDemo()">Buka AI Analytics ➔</button>
+        </div>
+
+        <div class="landing-feat-card">
+          <div class="feat-icon-bubble">⚖️</div>
+          <div>
+            <h3>Lossless Active Balancer 16S</h3>
+            <p>Pemantauan individual tegangan dan suhu 16 sel seri dengan penyeimbang muatan aktif saat ΔV &gt; 14 mV tanpa membuang energi menjadi panas.</p>
+          </div>
+          <button class="btn btn-xs btn-subtle" onclick="quickLoginDemo()">Lihat Sel 16S ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 5: 4 PILAR TEKNOLOGI UTAMA (DEEP DIVE GRID)
+         ========================================================= -->
+    <section class="landing-section-wrap" id="landing-pillars" style="padding-top: 40px;">
+      <div class="landing-section-head">
+        <span class="landing-section-tag">ARSITEKTUR MENDALAM</span>
+        <h2 class="landing-section-title">4 Pilar Teknologi Cerdas ECOBAT</h2>
+        <p class="landing-section-sub">
+          Integrasi perangkat lunak berbasis AI dan arsitektur kontrol perangkat keras level otomotif untuk keandalan baterai jangka panjang.
+        </p>
+      </div>
+
+      <div class="pillars-grid-2x2">
+        
+        <!-- Pillar 1 -->
+        <div class="pillar-card">
+          <div class="pillar-head">
+            <div class="pillar-icon-box">🧠</div>
+            <div>
+              <h3>AI Multi-Output LSTM & DQN</h3>
+              <p class="subtitle">TIME-SERIES DEGRADATION & AUTONOMOUS AGENT</p>
+            </div>
+          </div>
+          <div class="pillar-body">
+            <p>
+              Menggabungkan arsitektur jaringan saraf berulang LSTM yang dilatih untuk memprediksi kurva tegangan dan degradasi sel jangka panjang dengan agen DQN Reinforcement Learning yang menentukan C-rate pengisian optimal secara adaptif.
+            </p>
+            <ul class="pillar-features-list">
+              <li>Akurasi estimasi SoC &amp; SoH dengan error margin di bawah 0.8% RMSE</li>
+              <li>Evaluasi nilai matriks Q-values 5 tindakan (Standby, 0.35C, 0.65C, 1.0C, Traction)</li>
+              <li>Proyeksi Remaining Useful Life (RUL) hingga 10,000 siklus baterai</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="pillar-card">
+          <div class="pillar-head">
+            <div class="pillar-icon-box">⚖️</div>
+            <div>
+              <h3>Active Capacitive Balancer 16S</h3>
+              <p class="subtitle">SUB-MILLIVOLT PRECISION CHARGE TRANSFER</p>
+            </div>
+          </div>
+          <div class="pillar-body">
+            <p>
+              Berbeda dengan penyeimbang pasif konvensional yang membuang kelebihan energi sel tinggi menjadi panas melalui resistor, ECOBAT mentransfer muatan antar sel menggunakan bank kapasitor aktif tanpa kehilangan daya.
+            </p>
+            <ul class="pillar-features-list">
+              <li>Ambang batas penyetaraan dinamis terpicu saat ΔV antar sel &gt; 14 mV</li>
+              <li>Efisiensi transfer muatan melebihi 92% tanpa memicu panas Joule</li>
+              <li>Mencegah degradasi dini akibat sel terlemah (bottleneck cell capacity)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pillar-card">
+          <div class="pillar-head">
+            <div class="pillar-icon-box">🔌</div>
+            <div>
+              <h3>Universal Web Serial Hub & Firmware</h3>
+              <p class="subtitle">DIRECT USB BROWSER LINK & REST/SSE GATEWAY</p>
+            </div>
+          </div>
+          <div class="pillar-body">
+            <p>
+              Komunikasi langsung antara browser web dan microcontroller fisik (ESP32, STM32, Arduino) via kabel USB (Web Serial API) atau jaringan lokal WiFi. Mengontrol kontaktor HV, fan PWM 25 kHz, dan tombol E-Stop darurat.
+            </p>
+            <ul class="pillar-features-list">
+              <li>Koneksi 1-klik tanpa driver bridge (Baud rate 115200 bps standar ESP32)</li>
+              <li>Firmware C++ siap flash disertakan di folder <code>prototype_firmware/</code></li>
+              <li>Dual mode: Serial Monitor USB langsung dan REST/SSE Network Bridge</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="pillar-card">
+          <div class="pillar-head">
+            <div class="pillar-icon-box">🛡️</div>
+            <div>
+              <h3>CAN-Bus 2.0B & ISO 26262 ASIL-D</h3>
+              <p class="subtitle">500 KBPS ISOLATED AUTOMOTIVE TELEMETRY</p>
+            </div>
+          </div>
+          <div class="pillar-body">
+            <p>
+              Dirancang untuk integrasi mulus dengan Vehicle Control Unit (VCU) kendaraan listrik komersial menggunakan protokol CAN-Bus 2.0B 500 kbps standar industri otomotif dengan isolasi galvanik penuh.
+            </p>
+            <ul class="pillar-features-list">
+              <li>Arbitration ID standar: 0x1806E5F4 (Volt/Curr), 0x1818D0F4 (SoC/SoH), 0x1829B0F4 (Suhu)</li>
+              <li>Respon proteksi trip darurat sub-10ms terhadap lonjakan arus &amp; over-temperature</li>
+              <li>Pemantauan integritas sinyal dengan Exponential Moving Average (EMA)</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 6: TECHNICAL COMPARISON TABLE
+         ========================================================= -->
+    <section class="landing-section-wrap" id="landing-comparison" style="padding-top: 40px;">
+      <div class="landing-section-head">
+        <span class="landing-section-tag">KOMPARASI TEKNIS</span>
+        <h2 class="landing-section-title">BMS Konvensional vs ECOBAT Smart AI BMS</h2>
+        <p class="landing-section-sub">
+          Perbandingan langsung antara sistem manajemen baterai generasi lama berbasis aturan statis dengan platform cerdas ECOBAT.
+        </p>
+      </div>
+
+      <div class="comparison-card">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Fitur &amp; Kemampuan Teknis</th>
+              <th>BMS Konvensional (Legacy)</th>
+              <th>ECOBAT Smart AI BMS (v3.2)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Metode Estimasi SoC &amp; SoH</strong></td>
+              <td>Coulomb counting + OCV lookup statis (drift error &gt; 8%) <span class="badge-tag-old">Lama</span></td>
+              <td class="col-ecobat">Deep Learning Multi-Output LSTM (&lt; 0.8% error) <span class="badge-tag-better">Unggul</span></td>
+            </tr>
+            <tr>
+              <td><strong>Mekanisme Penyeimbang Sel (Cell Balancing)</strong></td>
+              <td>Pasif resistif (membuang energi jadi panas) <span class="badge-tag-old">Inefisien</span></td>
+              <td class="col-ecobat">Lossless Active Capacitive Transfer (ΔV &gt; 14mV) <span class="badge-tag-better">92% Efisiensi</span></td>
+            </tr>
+            <tr>
+              <td><strong>Pencegahan Thermal Runaway</strong></td>
+              <td>Cutoff kaku setelah suhu kritis tercapai <span class="badge-tag-old">Reaktif</span></td>
+              <td class="col-ecobat">DQN Reinforcement Learning derating proaktif sebelum panas <span class="badge-tag-better">Proaktif</span></td>
+            </tr>
+            <tr>
+              <td><strong>Konektivitas Prototipe Hardware</strong></td>
+              <td>Software proprietary &amp; kabel khusus terisolir <span class="badge-tag-old">Rumit</span></td>
+              <td class="col-ecobat">Web Serial API USB Browser Langsung + WiFi IoT Gateway <span class="badge-tag-better">1-Klik USB</span></td>
+            </tr>
+            <tr>
+              <td><strong>Visualisasi Elektrokimia</strong></td>
+              <td>Tabel angka statis dan log teks mentah <span class="badge-tag-old">Terbatas</span></td>
+              <td class="col-ecobat">Animasi 60-FPS Dinamika Ion Li⁺, Separator, &amp; Radiasi Termal <span class="badge-tag-better">60-FPS Real-Time</span></td>
+            </tr>
+            <tr>
+              <td><strong>Standar Keamanan Otomotif</strong></td>
+              <td>Proteksi dasar tanpa sertifikasi ASIL <span class="badge-tag-old">Biasa</span></td>
+              <td class="col-ecobat">Arsitektur Teruji ISO 26262 ASIL-D &amp; Fail-Safe E-Stop Relay <span class="badge-tag-better">ASIL-D Level</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 7: INTERACTIVE ROI & LIFETIME EXTENSION CALCULATOR
+         ========================================================= -->
+    <section class="landing-section-wrap" id="landing-calculator" style="padding-top: 40px;">
+      <div class="landing-section-head">
+        <span class="landing-section-tag">KALKULATOR INVESTASI</span>
+        <h2 class="landing-section-title">Hitung Proyeksi Penghematan Biaya Armada EV</h2>
+        <p class="landing-section-sub">
+          Geser parameter ukuran armada dan biaya pergantian baterai untuk menghitung efisiensi investasi dengan ECOBAT AI BMS.
+        </p>
+      </div>
+
+      <div class="roi-calc-card">
+        <div class="roi-calc-grid">
+          
+          <!-- Sliders Column -->
+          <div class="calc-sliders-column">
+            <div class="calc-control-group">
+              <div class="calc-label-row">
+                <span>Ukuran Armada Kendaraan Listrik (EV Fleet)</span>
+                <span id="label-fleet-size" style="color:var(--pastel-green); font-family:var(--font-mono); font-weight:800;">50 Unit</span>
+              </div>
+              <input type="range" id="slider-fleet-size" class="calc-slider-input" min="10" max="300" step="5" value="50" oninput="updateRoiCalculation()">
+            </div>
+
+            <div class="calc-control-group">
+              <div class="calc-label-row">
+                <span>Biaya Pergantian Pack Baterai (Per Kendaraan)</span>
+                <span id="label-battery-cost" style="color:var(--pastel-green); font-family:var(--font-mono); font-weight:800;">$15,000 USD</span>
+              </div>
+              <input type="range" id="slider-battery-cost" class="calc-slider-input" min="5000" max="35000" step="1000" value="15000" oninput="updateRoiCalculation()">
+            </div>
+
+            <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5;">
+              *Perhitungan berbasis perpanjangan siklus baterai rata-rata 32% melalui optimasi pengisian DQN dan pengurangan ketimpangan sel seri 16S.
+            </p>
+          </div>
+
+          <!-- Results Grid Column -->
+          <div class="calc-results-column">
+            <div class="calc-stat-card highlight">
+              <span class="calc-stat-num" id="calc-result-savings">$240,000</span>
+              <span class="calc-stat-label">Total Penghematan Biaya (USD)</span>
+            </div>
+            <div class="calc-stat-card">
+              <span class="calc-stat-num" id="calc-result-years">+3.2 Thn</span>
+              <span class="calc-stat-label">Perpanjangan Usia Pakai</span>
+            </div>
+            <div class="calc-stat-card">
+              <span class="calc-stat-num" id="calc-result-waste">22.5 Ton</span>
+              <span class="calc-stat-label">Reduksi Limbah Sel Baterai</span>
+            </div>
+            <div class="calc-stat-card">
+              <span class="calc-stat-num" id="calc-result-payback">&lt; 4 Bulan</span>
+              <span class="calc-stat-label">Periode Balik Modal (ROI)</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 8: AUTOMOTIVE STANDARDS & COMPLIANCE
+         ========================================================= -->
+    <section class="landing-section-wrap" id="landing-standards" style="padding-top: 40px;">
+      <div class="landing-section-head">
+        <span class="landing-section-tag">STANDAR &amp; SERTIFIKASI</span>
+        <h2 class="landing-section-title">Kepatuhan Regulasi Otomotif &amp; Energi Global</h2>
+        <p class="landing-section-sub">
+          Arsitektur ECOBAT dirancang untuk memenuhi persyaratan keselamatan fungsional dan transportasi internasional.
+        </p>
+      </div>
+
+      <div class="standards-grid-5">
+        <div class="standard-badge-card">
+          <span class="standard-badge-icon">🛡️</span>
+          <h4>ISO 26262</h4>
+          <p>ASIL-D Functional Safety untuk Powertrain EV</p>
+        </div>
+        <div class="standard-badge-card">
+          <span class="standard-badge-icon">✈️</span>
+          <h4>UN 38.3</h4>
+          <p>Transport &amp; Shipping Test lithium batteries</p>
+        </div>
+        <div class="standard-badge-card">
+          <span class="standard-badge-icon">🏭</span>
+          <h4>IEC 62619</h4>
+          <p>Secondary Lithium Cells untuk BESS Industri</p>
+        </div>
+        <div class="standard-badge-card">
+          <span class="standard-badge-icon">⚡</span>
+          <h4>UL 1973</h4>
+          <p>Standar Keamanan Pack Baterai Traksi</p>
+        </div>
+        <div class="standard-badge-card">
+          <span class="standard-badge-icon">🚗</span>
+          <h4>AUTOSAR 4.4</h4>
+          <p>Arsitektur Komunikasi ECU Otomotif</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 9: TESTIMONI PRAKTISI EV & RISET
+         ========================================================= -->
+    <section class="landing-section-wrap" id="landing-testimonials" style="padding-top: 40px;">
+      <div class="landing-section-head">
+        <span class="landing-section-tag">TESTIMONI PRAKTISI</span>
+        <h2 class="landing-section-title">Dipercaya oleh Insinyur &amp; Operator Baterai EV</h2>
+        <p class="landing-section-sub">
+          Pengalaman nyata para profesional otomotif yang mengimplementasikan teknologi ECOBAT pada kendaraan dan pengujian lab.
+        </p>
+      </div>
+
+      <div class="testimonials-grid-3">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "Kemampuan menghubungkan prototipe ESP32 langsung ke browser via Web Serial API tanpa software driver pihak ketiga sangat mempercepat iterasi perakitan BMS kami di lab."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AP</div>
+            <div class="author-info">
+              <h4>Ir. Amanda Puja</h4>
+              <p>Lead EV Powertrain Engineer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "Algoritma active balancing 16-sel seri berhasil menekan deviasi antar sel di bawah 12 mV secara konsisten pada armada bus listrik kami, mencegah degradasi dini."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">BS</div>
+            <div class="author-info">
+              <h4>Budi Santoso</h4>
+              <p>Direktur Operasional Armada EV</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "Estimasi LSTM multi-output memberikan akurasi SoH yang mendekati pengujian spektroskopi impedansi elektrokimia (EIS). Visualisasi aliran ion 60-FPS juga sangat edukatif."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">HW</div>
+            <div class="author-info">
+              <h4>Dr. Hendra Wijaya</h4>
+              <p>Peneliti Laboratorium Baterai LFP</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 10: BOTTOM HIGH-CONVERTING CTA BANNER
+         ========================================================= -->
+    <section class="landing-section-wrap" style="padding-top: 40px;">
+      <div class="landing-cta-banner-box">
+        <span class="landing-section-tag" style="background:#ffffff; color:var(--pastel-green);">AKSES PENUH LIVE DEMO</span>
+        <h2>Mulai Pemantauan Baterai EV &amp; Uji Prototipe Sekarang</h2>
+        <p>Akses dashboard telemetri real-time 350V, operasikan simulasi otonom AI DQN, dan kendalikan prototipe hardware mikrokontroler Anda secara instan.</p>
+        <button class="btn btn-lg btn-pastel-cyan btn-pill" onclick="quickLoginDemo()" style="padding:16px 40px; font-size:1.05rem; font-weight:800; box-shadow:0 6px 24px rgba(82,137,116,0.4);">
+          🚀 Masuk ke Dashboard Sekarang ➔
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING 11: COMPREHENSIVE CORPORATE FOOTER
+         ========================================================= -->
+    <footer class="corporate-footer">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <div class="brand-logo-icon brand-logo-img-wrap" style="width:36px; height:36px;">
+              <img src="assets/ecobat-icon-new.png" alt="ECOBAT Icon" class="brand-logo-img">
+            </div>
+            <h3>ecobat Technologies</h3>
+          </div>
+          <p class="footer-text">Sustainable Power Solutions — Sistem Cerdas AI BMS Enterprise Berbasis Pastel Hijau &amp; Cream untuk Kendaraan Listrik Modern.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Akses Slicing Halaman</h4>
+          <ul class="footer-links">
+            <li><a href="#landing-features">Fitur Utama</a></li>
+            <li><a href="#landing-mini-simulator">Simulasi Langsung 60-FPS</a></li>
+            <li><a href="#landing-pillars">4 Pilar Arsitektur</a></li>
+            <li><a href="#landing-comparison">Tabel Komparasi BMS</a></li>
+            <li><a href="#landing-calculator">Kalkulator ROI Armada</a></li>
+            <li><a href="#landing-standards">Standar ASIL-D</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Teknologi &amp; Prototipe</h4>
+          <ul class="footer-links">
+            <li><span>LSTM Multi-Output Model</span></li>
+            <li><span>DQN Reinforcement Learning</span></li>
+            <li><span>Web Serial Hardware API</span></li>
+            <li><span>Lossless 16S Capacitive Balancer</span></li>
+            <li><span>Firmware ESP32 / Arduino (C++)</span></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontak &amp; Lab</h4>
+          <ul class="footer-links">
+            <li><span>support@ecobat-bms.ai</span></li>
+            <li><span>Pusat Riset EV &amp; Baterai Otomotif</span></li>
+            <li><span>Telemetri Server: Online Port 8085</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ECOBAT Technologies Ltd. Seluruh hak cipta dilindungi. Pastel Green &amp; Cream Edition.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- =========================================================
+       VIEW 2: FULL ENTERPRISE DASHBOARD APPLICATION
+       ========================================================= -->
+  <div id="view-dashboard" class="app-view">
+
+    <!-- =========================================================
+         APP HEADER & FLOATING NAVIGATION
+         ========================================================= -->
+    <header class="app-header floating-navbar" id="dashboard-navbar">
+      <div class="header-inner">
+        
+        <!-- Brand Logo -->
+        <div class="brand-group" onclick="activateNavSection('nav-dashboard')">
+          <div class="brand-logo-icon brand-logo-img-wrap">
+            <img src="assets/ecobat-icon-new.png" alt="ECOBAT Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-text-col">
+            <h1 class="brand-title">ecobat <span>Technologies</span></h1>
+            <p class="brand-sub">Sustainable Power Solutions • AI BMS</p>
+          </div>
+        </div>
+
+      <!-- Navigation Hubs (Desktop) -->
+      <nav class="main-nav-hubs" id="desktop-nav">
+        <button class="nav-hub-btn active" data-nav="nav-dashboard">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard & Sel
+        </button>
+        <button class="nav-hub-btn" data-nav="nav-explainer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><polyline points="10 10 8 13 12 13 10 16"/></svg>
+          Animasi Baterai & AI
+        </button>
+        <button class="nav-hub-btn" data-nav="nav-prototype">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 4v10M8 8h8M5 12h14"/></svg>
+          Prototype Hub (Serial/IoT)
+        </button>
+        <button class="nav-hub-btn" data-nav="nav-analytics">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          AI LSTM & DQN
+        </button>
+        <button class="nav-hub-btn" data-nav="nav-charts">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Grafik Analitik
+        </button>
+        <button class="nav-hub-btn" data-nav="nav-research">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          Riset & Log
+        </button>
+        <button class="nav-hub-btn" data-nav="nav-about">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Tentang Kami
+        </button>
+      </nav>
+
+      <!-- Header Right Controls -->
+      <div class="header-right">
+        
+        <!-- User Profile Badge -->
+        <div class="user-profile-badge hide-on-tablet" id="hdr-user-badge">
+          <span style="width:7px; height:7px; border-radius:50%; background:#489980; display:inline-block;"></span>
+          <span id="user-display-name">Ir. Amanda Puja</span>
+        </div>
+
+        <!-- Quick Return to Landing Page -->
+        <button class="btn-nav-landing-link hide-on-tablet" onclick="showLandingView()" title="Kembali ke Landing Page">
+          🌐 Landing
+        </button>
+
+        <!-- Logout Button -->
+        <button class="btn-nav-landing-link hide-on-tablet" onclick="logoutUser()" title="Logout dari Dashboard">
+          🚪 Keluar
+        </button>
+
+        <!-- Prototype Hardware Status Pill -->
+        <div class="status-pill status-online hide-on-tablet" id="status-pill-proto" style="cursor: pointer;" onclick="activateNavSection('nav-prototype')" title="Status Prototype Hardware (Klik untuk membuka Hub)">
+          <span class="status-dot" id="proto-status-dot"></span>
+          <span id="proto-status-text">HW: SIAGA</span>
+        </div>
+
+        <!-- Connection Status Pill -->
+        <div class="status-pill status-online hide-on-mobile" id="status-pill-main">
+          <span class="status-dot"></span>
+          <span id="status-pill-text">LIVE BUS OK</span>
+        </div>
+
+        <!-- Navbar Size/Style Customizer -->
+        <button class="icon-btn nav-size-btn" onclick="cycleNavbarLayout()" title="Sesuaikan Ukuran Navbar Ngambang (Normal / Ringkas / Lebar)">
+          <span class="nav-size-indicator">⤢</span>
+        </button>
+
+        <!-- Audio Alert Toggle -->
+        <button class="icon-btn" id="btn-toggle-sound" title="Aktif/Nonaktifkan Suara Alarm Realtime">
+          <span id="sound-icon">🔊</span>
+        </button>
+
+        <!-- Pastel Theme Toggle (Light / Dark) -->
+        <button class="icon-btn" id="btn-toggle-theme" title="Beralih Mode Warna Pastel (Terang/Gelap)">
+          <span id="theme-icon">🌙</span>
+        </button>
+
+        <!-- Stream Play/Pause -->
+        <button class="btn btn-sm btn-pastel-cyan" id="btn-toggle-sim">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+          <span id="sim-btn-label">Jeda Stream</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="icon-btn mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+      <button class="nav-hub-btn active" data-nav="nav-dashboard">📊 Dashboard & Sel Baterai</button>
+      <button class="nav-hub-btn" data-nav="nav-explainer">🔋 Animasi Baterai & Panduan AI</button>
+      <button class="nav-hub-btn" data-nav="nav-prototype">🔌 Prototype Hub (Serial/IoT)</button>
+      <button class="nav-hub-btn" data-nav="nav-analytics">🤖 AI LSTM & DQN</button>
+      <button class="nav-hub-btn" data-nav="nav-charts">📈 Grafik Analitik</button>
+      <button class="nav-hub-btn" data-nav="nav-research">🧪 Riset & Log Histori</button>
+      <button class="nav-hub-btn" data-nav="nav-about">ℹ️ Tentang ECOBAT</button>
+      <div class="mobile-drawer-actions-row">
+        <button class="btn btn-sm btn-subtle" onclick="showLandingView()" style="flex:1;">🌐 Landing Page</button>
+        <button class="btn btn-sm btn-subtle" onclick="logoutUser()" style="flex:1;">🚪 Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       REAL-TIME STREAM CONTROLLER STRIP
+       ========================================================= -->
+  <section class="stream-control-strip">
+    <div class="stream-strip-inner">
+      <div class="stream-meta-group">
+        <span class="backend-badge" id="backend-status-badge">
+          <span style="font-size: 8px;">●</span>
+          <span id="backend-engine-label">Engine Real-Time Siaga</span>
+        </span>
+        <span class="meta-item">⏱️ Uptime: <strong id="stream-uptime">00:00:00</strong></span>
+        <span class="meta-item">⚡ Ticks: <strong id="stream-ticks">0</strong></span>
+        <span class="meta-item">📡 Frekuensi CAN: <strong id="stream-freq">10 Hz</strong></span>
+        <span class="meta-item">📶 Latensi: <strong id="stream-latency" class="text-pastel-mint">~12 ms</strong></span>
+      </div>
+
+      <div class="stream-buttons-group">
+        <span style="font-size: 0.74rem; color: var(--text-muted); font-weight: 600;">Kecepatan:</span>
+        <div class="speed-selector-group">
+          <button class="speed-btn" data-speed="500">500ms</button>
+          <button class="speed-btn active" data-speed="1000">1.0s</button>
+          <button class="speed-btn" data-speed="2000">2.0s</button>
+        </div>
+        <button class="btn btn-sm btn-subtle" id="btn-step-tick" title="Maju 1 Tick Simulasi">⏭️ Step</button>
+        <button class="btn btn-sm btn-subtle" id="btn-reset-sim" title="Reset Simulasi">🔄 Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CORPORATE HERO SECTION
+       ========================================================= -->
+  <section class="corporate-hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="badge-tag btn-pastel-mint">
+          <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10b981;"></span>
+          NEXT-GEN ENTERPRISE EV BMS
+        </span>
+        <h1 class="hero-title">Sistem AI BMS Cerdas & Real-Time untuk <span>Kendaraan Listrik</span></h1>
+        <p class="hero-sub">ECOBAT memadukan deep learning multi-output LSTM untuk estimasi SoC/SoH/RUL dan Reinforcement Learning Deep Q-Network (DQN) untuk strategi pengisian daya otonom serta proteksi termal presisi tinggi.</p>
+        
+        <div class="hero-cta-group" style="display:flex; flex-wrap:wrap; gap:10px;">
+          <button class="btn btn-md btn-pastel-cyan btn-pill" onclick="activateNavSection('nav-explainer')">
+            🔋 Animasi Baterai & Panduan AI ➔
+          </button>
+          <button class="btn btn-md btn-pastel-mint btn-pill" onclick="activateNavSection('nav-prototype')">
+            🔌 Sambungkan Prototype Real-Time
+          </button>
+          <button class="btn btn-md btn-subtle btn-pill" onclick="activateNavSection('nav-dashboard')">
+            📊 Live Dashboard Telemetri
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-stats-cards">
+        <div class="stat-card">
+          <span class="stat-num">350.0 V</span>
+          <span class="stat-lbl">Tegangan Pack Nominal (16S Submodul)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">10,000+</span>
+          <span class="stat-lbl">Estimasi Siklus Life Throughput</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">99.8%</span>
+          <span class="stat-lbl">Presisi Validasi Sinyal (EMA Penapis)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">ISO 26262</span>
+          <span class="stat-lbl">Kepatuhan Standar Keselamatan ASIL-D</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       GLOBAL KPI STRIP (6 SUMMARY CARDS WITH PASTEL ACCENTS)
+       ========================================================= -->
+  <section class="kpi-strip-bar">
+    <div class="kpi-container">
+      
+      <!-- 1. Voltage -->
+      <div class="kpi-card kpi-cyan">
+        <div class="kpi-header">
+          <span class="kpi-lbl">Tegangan Pack</span>
+          <span class="kpi-icon-badge">⚡</span>
+        </div>
+        <div class="kpi-num-group">
+          <span class="kpi-num text-pastel-cyan" id="kpi-voltage">350.0</span>
+          <span class="kpi-unit">V</span>
+        </div>
+        <span class="kpi-tag" id="kpi-voltage-status">Status Normal Bus</span>
+      </div>
+
+      <!-- 2. Current -->
+      <div class="kpi-card kpi-peach">
+        <div class="kpi-header">
+          <span class="kpi-lbl">Arus Baterai</span>
+          <span class="kpi-icon-badge">🔋</span>
+        </div>
+        <div class="kpi-num-group">
+          <span class="kpi-num text-pastel-peach" id="kpi-current">-45.2</span>
+          <span class="kpi-unit">A</span>
+        </div>
+        <span class="kpi-tag" id="kpi-mode">Discharging Mode</span>
+      </div>
+
+      <!-- 3. Temperature -->
+      <div class="kpi-card kpi-coral">
+        <div class="kpi-header">
+          <span class="kpi-lbl">Suhu Cell Max</span>
+          <span class="kpi-icon-badge">🌡️</span>
+        </div>
+        <div class="kpi-num-group">
+          <span class="kpi-num text-pastel-coral" id="kpi-temp">29.4</span>
+          <span class="kpi-unit">°C</span>
+        </div>
+        <span class="kpi-tag" id="kpi-temp-status">Optimal (Target 27°C)</span>
+      </div>
+
+      <!-- 4. SoC / DoD -->
+      <div class="kpi-card kpi-lavender">
+        <div class="kpi-header">
+          <span class="kpi-lbl">State of Charge</span>
+          <span class="kpi-icon-badge">📊</span>
+        </div>
+        <div class="kpi-num-group">
+          <span class="kpi-num text-pastel-lavender" id="kpi-soc">64.5</span>
+          <span class="kpi-unit">%</span>
+        </div>
+        <span class="kpi-tag">DoD: <strong id="kpi-dod">35.5</strong>%</span>
+      </div>
+
+      <!-- 5. SoH -->
+      <div class="kpi-card kpi-mint">
+        <div class="kpi-header">
+          <span class="kpi-lbl">State of Health</span>
+          <span class="kpi-icon-badge">❤️</span>
+        </div>
+        <div class="kpi-num-group">
+          <span class="kpi-num text-pastel-mint" id="kpi-soh">97.8</span>
+          <span class="kpi-unit">%</span>
+        </div>
+        <span class="kpi-tag">Degradasi Rendah</span>
+      </div>
+
+      <!-- 6. RUL -->
+      <div class="kpi-card kpi-yellow">
+        <div class="kpi-header">
+          <span class="kpi-lbl">Prediksi RUL</span>
+          <span class="kpi-icon-badge">⏳</span>
+        </div>
+        <div class="kpi-num-group">
+          <span class="kpi-num text-pastel-yellow" id="kpi-rul">8,900</span>
+          <span class="kpi-unit">Siklus</span>
+        </div>
+        <span class="kpi-tag">EOL Threshold 80%</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       MAIN PORTAL CONTAINER
+       ========================================================= -->
+  <main class="main-container">
+
+    <!-- =========================================================
+         SECTION: ANIMASI BATERAI & ECOBAT EXPLAINER SUITE
+         ========================================================= -->
+    <div class="nav-section" id="nav-explainer">
+      
+      <div class="battery-explainer-card">
+        <div class="explainer-top-bar">
+          <div class="explainer-title-group">
+            <h2>
+              <span style="font-size:1.4rem;">🔋</span>
+              Visualisasi Interaktif Baterai & Animasi Aliran Ion ECOBAT
+            </h2>
+            <p>Simulasi 60-FPS dinamika elektrokimia sel Li-ion, konfigurasi 16S, sistem penyeimbang aktif, dan arsitektur AI BMS</p>
+          </div>
+
+          <div class="explainer-view-switcher">
+            <button class="view-tab-btn active" id="btn-view-ions" onclick="setBatteryViewMode('ions')">
+              🔬 Aliran Ion Li+
+            </button>
+            <button class="view-tab-btn" id="btn-view-pack" onclick="setBatteryViewMode('pack')">
+              🔋 Pack Sub-Modul 16S
+            </button>
+            <button class="view-tab-btn" id="btn-view-evloop" onclick="setBatteryViewMode('evloop')">
+              🚗 Loop Daya EV
+            </button>
+            <button class="view-tab-btn" id="btn-view-aibms" onclick="setBatteryViewMode('aibms')">
+              🧠 Otak AI & Balancer
+            </button>
+          </div>
+        </div>
+
+        <!-- Canvas Stage -->
+        <div class="battery-stage-container">
+          <div class="battery-hud-overlay">
+            <div class="hud-pill">
+              <span style="width:8px; height:8px; border-radius:50%; background:#38bdf8;" class="pulse-dot"></span>
+              <span id="canvas-hud-mode">MODE: DISCHARGING (-45.2 A)</span>
+            </div>
+
+            <div class="hud-stats-group">
+              <div class="hud-pill">
+                <span>⚡ Fluks Ion:</span>
+                <strong id="canvas-hud-flux" class="text-pastel-cyan">1.80x</strong>
+              </div>
+              <div class="hud-pill">
+                <span>🌡️ Termal Gradien:</span>
+                <strong id="canvas-hud-thermal" class="text-pastel-mint">29.4°C</strong>
+              </div>
+              <div class="hud-pill">
+                <span>⚖️ Balancer:</span>
+                <strong id="canvas-hud-bal" class="text-pastel-yellow">AKTIF (ΔV 14mV)</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="battery-canvas-wrap">
+            <canvas id="battery-particle-canvas"></canvas>
+          </div>
+
+          <div class="battery-stage-footer">
+            <div class="battery-layer-legend">
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#fb7185;"></span>
+                <span>Katoda (LiFePO4/NMC)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#a78bfa;"></span>
+                <span>Separator Mikropori</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#4ade80;"></span>
+                <span>Anoda Grafit</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#38bdf8;"></span>
+                <span>Partikel Ion Li+ (Bergerak)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#fb923c;"></span>
+                <span>Aliran Elektron e- Sirkuit Luar</span>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-sm btn-subtle" onclick="triggerIonBurst()">💥 Stimulasi Pulsasi Arus</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remotion-Style Cinematic Interactive Story Walkthrough -->
+        <div class="story-tour-box">
+          <div class="tour-header-controls">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <button class="btn btn-sm btn-pastel-cyan btn-pill" id="btn-tour-play" onclick="toggleTourPlayback()">
+                ▶️ Putar Panduan Otomatis
+              </button>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Tahapan Panduan Interaktif ECOBAT:</span>
+            </div>
+
+            <div class="tour-steps-nav">
+              <button class="tour-step-pill active" id="tour-step-1" onclick="setTourStep(1)">01. Struktur Sel 16S</button>
+              <button class="tour-step-pill" id="tour-step-2" onclick="setTourStep(2)">02. Dinamika Aliran Ion & Daya</button>
+              <button class="tour-step-pill" id="tour-step-3" onclick="setTourStep(3)">03. AI Prediksi LSTM (SoC/SoH)</button>
+              <button class="tour-step-pill" id="tour-step-4" onclick="setTourStep(4)">04. DQN RL & Balancer Cerdas</button>
+            </div>
+          </div>
+
+          <div class="tour-narration-card">
+            <div class="tour-narration-icon" id="tour-icon">🔬</div>
+            <div class="tour-narration-text">
+              <h4 id="tour-title">01. Arsitektur Sub-Modul 16-Sel Seri (16S) & Elektrokimia Baterai</h4>
+              <p id="tour-desc">Baterai pack ECOBAT tersusun atas modul 16 sel Li-ion seri bertegangan nominal 350V. Setiap sel beroperasi pada rentang presisi 2.8V - 4.2V. Pada tingkat mikroskopis, partikel ion Li+ berpindah secara dinamis antara kisi Anoda Grafit dan Katoda melalui elektrolit padat/cair dengan penapis resistansi internal ultra-rendah.</p>
+            </div>
+          </div>
+
+          <div class="tour-progress-line">
+            <div class="tour-progress-fill" id="tour-progress-bar"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- =========================================================
+         SECTION 1: DASHBOARD (TELEMETRY, SENSORS & CELL PACK)
+         ========================================================= -->
+    <div class="nav-section active" id="nav-dashboard">
+      
+      <!-- BATTERY PACK & ENERGY FLOW HERO VISUALIZER (NEW COMPONENT) -->
+      <div class="battery-pack-hero-card">
+        <div class="pack-header-metrics">
+          <div class="pack-title-area">
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><line x1="6" y1="11" x2="6" y2="13"/><line x1="10" y1="11" x2="10" y2="13"/><line x1="14" y1="11" x2="14" y2="13"/></svg>
+              Visualisasi Sub-Modul Baterai 16-Sel Seri (16S) & Aliran Energi Live
+            </h3>
+            <p>Pemantauan tegangan per sel, kesetimbangan (balancing aktif), dan distribusi termal modul secara realtime</p>
+          </div>
+          <div class="pack-quick-stats">
+            <span class="stat-pill-sm">Tegangan Rata: <strong id="pack-avg-volt">3.65 V</strong></span>
+            <span class="stat-pill-sm">Max ΔV (Delta): <strong id="pack-delta-volt" class="text-pastel-mint">14 mV</strong></span>
+            <span class="stat-pill-sm">Balancing Aktif: <strong id="pack-active-bal" class="text-pastel-cyan">2 Sel</strong></span>
+            <span class="stat-pill-sm">Daya Output: <strong id="pack-kw-val">-15.8 kW</strong></span>
+          </div>
+        </div>
+
+        <!-- Energy Flow Visualizer (SVG Animated Flow Line) -->
+        <div class="energy-flow-visualizer">
+          <svg class="flow-wire-svg" viewBox="0 0 800 10" preserveAspectRatio="none">
+            <line x1="0" y1="5" x2="800" y2="5" class="flow-wire-path" />
+            <line x1="0" y1="5" x2="800" y2="5" class="flow-particle-path discharge" id="flow-particle-line" />
+          </svg>
+
+          <div class="flow-nodes-container">
+            <!-- Node 1: Grid / Charger -->
+            <div class="flow-node" id="node-grid">
+              <div class="node-icon-circle">⚡</div>
+              <span class="node-label">Stasiun EVSE</span>
+              <span class="node-status" id="flow-grid-status">Siaga</span>
+            </div>
+
+            <!-- Node 2: BMS Controller -->
+            <div class="flow-node active" id="node-bms">
+              <div class="node-icon-circle">🧠</div>
+              <span class="node-label">Master AI BMS</span>
+              <span class="node-status text-pastel-mint">Aktif & Optimal</span>
+            </div>
+
+            <!-- Node 3: Battery Pack -->
+            <div class="flow-node active" id="node-battery">
+              <div class="node-icon-circle">🔋</div>
+              <span class="node-label">Pack Baterai (350V)</span>
+              <span class="node-status text-pastel-cyan" id="flow-pack-status">Discharge 45A</span>
+            </div>
+
+            <!-- Node 4: Traction Motor -->
+            <div class="flow-node active" id="node-motor">
+              <div class="node-icon-circle">🚗</div>
+              <span class="node-label">Motor Traksi EV</span>
+              <span class="node-status text-pastel-peach" id="flow-motor-status">Traksi 15.8 kW</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 16-Cell Series Matrix Grid -->
+        <div class="cell-matrix-header">
+          <h4>Status Tegangan & Suhu Per Sel Individual (Cell 01 - Cell 16)</h4>
+          <span style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);">Standar Sel Seimbang: ΔV &lt; 30mV</span>
+        </div>
+        
+        <div class="cell-matrix-grid" id="cell-matrix-grid">
+          <!-- Dynamically populated 16 cells in JS -->
+        </div>
+      </div>
+
+      <!-- TWO COLUMNS: LEFT (CONTROLS & SLIDERS), RIGHT (QUICK TELEMETRY & CAN TERMINAL) -->
+      <div class="grid-2col">
+        
+        <!-- Left Column: Acquisition & Scenarios -->
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2>Kontrol Telemetri & Skenario Operasi</h2>
+              <p>Simulasi parameter masukan sensor kendaraan listrik</p>
+            </div>
+            
+            <!-- Preset Buttons -->
+            <div class="preset-group">
+              <span class="preset-lbl">Preset:</span>
+              <button class="btn btn-sm btn-subtle btn-pill" onclick="setPreset('normal')">🚗 Normal</button>
+              <button class="btn btn-sm btn-subtle btn-pill" onclick="setPreset('fastcharge')">⚡ Fast Charge</button>
+              <button class="btn btn-sm btn-subtle btn-pill" onclick="setPreset('overheat')">🔥 Panas</button>
+              <button class="btn btn-sm btn-subtle btn-pill" onclick="setPreset('depleted')">🛑 Low SoC</button>
+              <button class="btn btn-sm btn-subtle btn-pill" onclick="setPreset('regen')">🟢 Regen</button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="sensor-sliders-list">
+              
+              <!-- 1. Voltage -->
+              <div class="slider-box">
+                <div class="slider-head">
+                  <span class="slider-title">1. Tegangan Pack Total (Voltage)</span>
+                  <span class="slider-val"><strong id="val-voltage">350.0</strong> V</span>
+                </div>
+                <input type="range" min="280" max="430" step="0.5" id="slider-voltage" class="pastel-slider">
+                <div class="slider-meta"><span>Min: 280 V</span><span>Nominal: 350 V</span><span>Max: 430 V</span></div>
+              </div>
+
+              <!-- 2. Current -->
+              <div class="slider-box">
+                <div class="slider-head">
+                  <span class="slider-title">2. Arus Pack Baterai (Current)</span>
+                  <span class="slider-val"><strong id="val-current">-45.2</strong> A</span>
+                </div>
+                <input type="range" min="-130" max="110" step="0.5" id="slider-current" class="pastel-slider">
+                <div class="slider-meta"><span>-130 A (Discharge)</span><span>0 A (Idle)</span><span>+110 A (Charge)</span></div>
+              </div>
+
+              <!-- 3. Temperature -->
+              <div class="slider-box">
+                <div class="slider-head">
+                  <span class="slider-title">3. Suhu Sel / Thermal Pack</span>
+                  <span class="slider-val"><strong id="val-temp">29.4</strong> °C</span>
+                </div>
+                <input type="range" min="10" max="65" step="0.1" id="slider-temp" class="pastel-slider">
+                <div class="slider-meta"><span>10 °C (Dingin)</span><span>Target: 27 °C</span><span>Batas Kritis: 50 °C</span></div>
+              </div>
+
+              <!-- 4 & 6. SoC and DoD -->
+              <div class="slider-box">
+                <div class="slider-head">
+                  <span class="slider-title">4 & 6. State of Charge (SoC) / DoD</span>
+                  <span class="slider-val">SoC: <strong id="val-soc">64.5</strong>% | DoD: <strong id="val-dod">35.5</strong>%</span>
+                </div>
+                <input type="range" min="0" max="100" step="0.5" id="slider-soc" class="pastel-slider">
+                <div class="slider-meta"><span>0% (Habis)</span><span>50%</span><span>100% (Penuh)</span></div>
+              </div>
+
+              <!-- 5. SoH -->
+              <div class="slider-box">
+                <div class="slider-head">
+                  <span class="slider-title">5. State of Health (SoH)</span>
+                  <span class="slider-val"><strong id="val-soh">97.8</strong>%</span>
+                </div>
+                <input type="range" min="70" max="100" step="0.1" id="slider-soh" class="pastel-slider">
+                <div class="slider-meta"><span>70% (EOL)</span><span>80% (Batas Garansi)</span><span>100% (Baru)</span></div>
+              </div>
+
+              <!-- 7. Cycle Count -->
+              <div class="slider-box">
+                <div class="slider-head">
+                  <span class="slider-title">7. Jumlah Siklus Ekuivalen (Cycles)</span>
+                  <span class="slider-val"><strong id="val-cycles">215</strong> Siklus</span>
+                </div>
+                <input type="range" min="0" max="10000" step="10" id="slider-cycles" class="pastel-slider">
+                <div class="slider-meta"><span>0</span><span>5,000</span><span>10,000</span></div>
+              </div>
+
+            </div>
+
+            <!-- Noise Switch -->
+            <div class="noise-box">
+              <label class="toggle-switch">
+                <input type="checkbox" id="chk-noise">
+                <span class="toggle-slider"></span>
+              </label>
+              <div class="noise-text">
+                <strong>Injeksi Fluktuasi Noise Sensor Dinamis</strong>
+                <p>Aktifkan noise acak untuk menguji ketahanan penapis Moving Average (EMA) dan deteksi anomali.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Live Telemetry Charts, Table & CAN Terminal -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          
+          <!-- Quick Real-Time Telemetry Trend -->
+          <div class="card-pastel">
+            <div class="card-header">
+              <div class="card-title-group">
+                <h2>Tren Tegangan & Arus Real-Time</h2>
+                <p>Grafik telemetri berkecepatan tinggi per detik</p>
+              </div>
+              <span class="badge-tag btn-pastel-mint">STREAM AKTIF</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-quick-wrapper">
+                <canvas id="chart-quick-telemetry"></canvas>
+              </div>
+
+              <div class="grid-4col mt-16">
+                <div class="stat-card" style="padding:10px;">
+                  <span class="stat-lbl">Mode Operasi</span>
+                  <span class="stat-num" style="font-size:0.95rem;" id="mode-status-text">DISCHARGING</span>
+                </div>
+                <div class="stat-card" style="padding:10px;">
+                  <span class="stat-lbl">Beban C-Rate</span>
+                  <span class="stat-num" style="font-size:0.95rem;" id="c-rate-val">0.38 C</span>
+                </div>
+                <div class="stat-card" style="padding:10px;">
+                  <span class="stat-lbl">Status Suhu</span>
+                  <span class="stat-num text-pastel-mint" style="font-size:0.95rem;" id="temp-qual-text">STABIL</span>
+                </div>
+                <div class="stat-card" style="padding:10px;">
+                  <span class="stat-lbl">Kesehatan Sinyal</span>
+                  <span class="stat-num text-pastel-cyan" style="font-size:0.95rem;" id="val-signal-health">99.8%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time CAN-Bus Packet Terminal (NEW COMPONENT) -->
+          <div class="card-pastel">
+            <div class="card-header">
+              <div class="card-title-group">
+                <h2>Streaming Frame CAN-Bus 2.0B Real-Time</h2>
+                <p>Protokol bus otomotif (500 kbps) dengan decoding byte & validasi CRC</p>
+              </div>
+              <div style="display:flex; gap:6px;">
+                <button class="btn btn-sm btn-subtle" id="btn-clear-can">Bersihkan</button>
+                <button class="btn btn-sm btn-subtle" id="btn-pause-can">Jeda</button>
+              </div>
+            </div>
+            <div class="card-body" style="padding:14px;">
+              <div class="terminal-wrapper">
+                <div class="terminal-header">
+                  <div class="terminal-title">
+                    <span class="term-dot term-dot-red"></span>
+                    <span class="term-dot term-dot-yellow"></span>
+                    <span class="term-dot term-dot-green"></span>
+                    <span>can0: 500000 bps | RX Buffer Online</span>
+                  </div>
+                  <span style="font-size:0.7rem; color:#64748b;">HEX/ASCII</span>
+                </div>
+                <div class="terminal-body" id="can-bus-terminal">
+                  <!-- Streamed packets will be injected here -->
+                </div>
+              </div>
+
+              <!-- Signal Validation Summary -->
+              <div class="table-responsive-container mt-16">
+                <table class="pastel-table">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Sinyal Mentah</th>
+                      <th>Filtered (EMA)</th>
+                      <th>Status Validasi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Tegangan Pack</td>
+                      <td id="raw-volt">350.0 V</td>
+                      <td id="ema-volt" class="text-pastel-cyan">350.0 V</td>
+                      <td><span class="badge-tag btn-pastel-mint">VALID</span></td>
+                    </tr>
+                    <tr>
+                      <td>Arus Baterai</td>
+                      <td id="raw-curr">-45.2 A</td>
+                      <td id="ema-curr" class="text-pastel-cyan">-45.2 A</td>
+                      <td><span class="badge-tag btn-pastel-mint">VALID</span></td>
+                    </tr>
+                    <tr>
+                      <td>Suhu Cell</td>
+                      <td id="raw-temp">29.4 °C</td>
+                      <td id="ema-temp" class="text-pastel-cyan">29.4 °C</td>
+                      <td><span class="badge-tag btn-pastel-mint">VALID</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =========================================================
+         SECTION: PROTOTYPE HARDWARE CONNECTION & REAL-TIME CONTROL HUB
+         ========================================================= -->
+    <div class="nav-section" id="nav-prototype">
+      
+      <div class="prototype-hub-card">
+        <div class="explainer-top-bar">
+          <div class="explainer-title-group">
+            <h2>
+              <span style="font-size:1.4rem;">🔌</span>
+              Koneksi Prototipe Fisik & Pusat Kontrol Real-Time
+            </h2>
+            <p>Hubungkan website ECOBAT secara real-time ke prototipe perangkat keras Anda (ESP32, Arduino, STM32, USB Serial atau WiFi Gateway) untuk pemantauan telemetri dan kendali aktuator langsung.</p>
+          </div>
+
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="badge-tag btn-pastel-mint" id="badge-hw-status">HARDWARE: SIAP TERHUBUNG</span>
+          </div>
+        </div>
+
+        <!-- 3 Gateway Options Grid -->
+        <div class="proto-connection-grid">
+          
+          <!-- Gateway 1: Web Serial API (Direct USB Cable) -->
+          <div class="proto-conn-box active-gateway" id="box-conn-serial">
+            <div class="proto-conn-head">
+              <h3>⚡ Web Serial API (USB)</h3>
+              <span class="badge-tag btn-pastel-cyan">DIREKOMENDASIKAN</span>
+            </div>
+            <p class="proto-conn-desc">Sambungkan kabel USB langsung dari ESP32 / Arduino / USB-to-TTL ke browser (Chrome/Edge). Data telemetri mengalir dengan latensi ultra-rendah tanpa instalasi bridge terpisah.</p>
+            
+            <div style="display:flex; gap:8px; align-items:center; margin-top:auto;">
+              <select id="sel-baud-rate" class="pastel-slider" style="padding:6px 10px; border-radius:var(--radius-xs); background:var(--bg-card); font-size:0.75rem; border:1px solid var(--border-color); color:var(--text-main);">
+                <option value="115200" selected>115200 bps (ESP32/STM32)</option>
+                <option value="9600">9600 bps (Arduino Uno)</option>
+                <option value="500000">500000 bps (CAN Bus Bridge)</option>
+                <option value="921600">921600 bps (High-Speed DMA)</option>
+              </select>
+              <button class="btn btn-sm btn-pastel-cyan" id="btn-connect-serial" onclick="connectWebSerial()">
+                🔌 Hubungkan USB
+              </button>
+              <button class="btn btn-sm btn-subtle" id="btn-disconnect-serial" onclick="disconnectWebSerial()" style="display:none;">
+                ❌ Putus
+              </button>
+            </div>
+            <span style="font-size:0.7rem; color:var(--text-dim);" id="serial-status-note">Status: Menunggu pemilihan port USB</span>
+          </div>
+
+          <!-- Gateway 2: ESP32 WiFi / HTTP REST & SSE -->
+          <div class="proto-conn-box">
+            <div class="proto-conn-head">
+              <h3>📶 WiFi / LAN REST Gateway</h3>
+              <span class="badge-tag btn-pastel-lavender">HTTP / SSE</span>
+            </div>
+            <p class="proto-conn-desc">Prototipe ESP32 dapat mengirim data JSON melalui jaringan lokal (WiFi) langsung ke endpoint <code>POST /api/prototype/telemetry</code> dan menerima perintah otomatis.</p>
+            
+            <div style="display:flex; gap:8px; align-items:center; margin-top:auto;">
+              <input type="text" id="input-proto-url" value="http://localhost:8080" style="padding:6px 10px; border-radius:var(--radius-xs); background:var(--bg-card); font-size:0.75rem; border:1px solid var(--border-color); color:var(--text-main); flex:1;" readonly>
+              <button class="btn btn-sm btn-subtle" onclick="checkBackendHealth()">📡 Cek Ping</button>
+            </div>
+            <span style="font-size:0.7rem; color:var(--text-dim);" id="backend-health-note">Endpoint: /api/prototype/telemetry</span>
+          </div>
+
+          <!-- Gateway 3: Virtual Hardware Simulator -->
+          <div class="proto-conn-box">
+            <div class="proto-conn-head">
+              <h3>🧪 Virtual Hardware Bridge</h3>
+              <span class="badge-tag btn-pastel-mint">TESTING</span>
+            </div>
+            <p class="proto-conn-desc">Gunakan emulator prototipe terintegrasi saat perangkat keras fisik sedang dirakit di lab atau meja kerja. Memungkinkan pengujian menyeluruh seluruh logika kontrol BMS.</p>
+            
+            <div style="display:flex; gap:8px; align-items:center; margin-top:auto;">
+              <button class="btn btn-sm btn-pastel-mint" id="btn-toggle-hw-sim" onclick="toggleVirtualHardware()">
+                ⚡ Aktifkan Virtual Hardware
+              </button>
+            </div>
+            <span style="font-size:0.7rem; color:var(--text-dim);">Dukungan 16 sel, fluktuasi impedansi & degradasi panas</span>
+          </div>
+
+        </div>
+
+        <!-- Hardware Control Console (Mengatur & Mengendalikan Prototype) -->
+        <div style="margin-top:24px;">
+          <div class="card-title-group" style="margin-bottom:14px;">
+            <h3 style="font-size:1.05rem; font-weight:700; color:var(--text-main); display:flex; align-items:center; gap:8px;">
+              🎛️ Konsol Kontrol Aktuator & Pengaturan Prototipe
+            </h3>
+            <p style="font-size:0.8rem; color:var(--text-muted);">Setiap perintah akan dikirimkan secara langsung ke prototipe fisik melalui bus serial atau gateway HTTP</p>
+          </div>
+
+          <div class="hardware-control-panel">
+            
+            <!-- 1. Main High-Voltage Contactor Relay -->
+            <div class="hw-control-box">
+              <div class="hw-box-head">
+                <div>
+                  <div class="hw-box-title">1. Kontaktor Tegangan Tinggi (HV Relay)</div>
+                  <div class="hw-box-subtitle">Sakelar isolasi utama daya baterai EV</div>
+                </div>
+                <div class="contactor-led-glow" id="hw-contactor-led" title="Status LED Kontaktor Fisik"></div>
+              </div>
+
+              <div style="font-size:0.82rem; font-weight:600; color:var(--text-main);" id="hw-contactor-status-text">
+                STATUS: TERHUBUNG (CLOSED)
+              </div>
+
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-sm btn-pastel-mint btn-pill" id="btn-contactor-close" onclick="sendHardwareCommand('SET_CONTACTOR', 'CLOSED')">
+                  🔌 Hubungkan (Close)
+                </button>
+                <button class="btn btn-sm btn-subtle btn-pill" id="btn-contactor-open" onclick="sendHardwareCommand('SET_CONTACTOR', 'OPEN')">
+                  🛑 Putuskan (Isolate)
+                </button>
+              </div>
+              <span style="font-size:0.7rem; color:var(--text-dim);">Perintah: SET_CONTACTOR CLOSED/OPEN (Pin 19)</span>
+            </div>
+
+            <!-- 2. Cooling Fan PWM Duty Cycle -->
+            <div class="hw-control-box">
+              <div class="hw-box-head">
+                <div>
+                  <div class="hw-box-title">2. Kipas Pendingin (Cooling Fan PWM)</div>
+                  <div class="hw-box-subtitle">Manajemen termal modul & heat pipe</div>
+                </div>
+                <span class="badge-tag btn-pastel-cyan" id="hw-fan-val">35% PWM</span>
+              </div>
+
+              <input type="range" min="0" max="100" step="5" value="35" id="slider-hw-fan" class="pastel-slider" oninput="updateFanPWM(this.value)">
+              <div class="slider-meta">
+                <span>0% (Mati)</span>
+                <span>Target: 27°C</span>
+                <span>100% (Maksimal)</span>
+              </div>
+
+              <div style="display:flex; gap:6px;">
+                <button class="btn btn-xs btn-subtle" onclick="updateFanPWM(0)">0%</button>
+                <button class="btn btn-xs btn-subtle" onclick="updateFanPWM(35)">35%</button>
+                <button class="btn btn-xs btn-subtle" onclick="updateFanPWM(70)">70%</button>
+                <button class="btn btn-xs btn-subtle" onclick="updateFanPWM(100)">100%</button>
+              </div>
+              <span style="font-size:0.7rem; color:var(--text-dim);">Perintah: SET_FAN_PWM 0-100 (Pin 18, 25kHz)</span>
+            </div>
+
+            <!-- 3. Current Limit & Active Balancer Mode -->
+            <div class="hw-control-box">
+              <div class="hw-box-head">
+                <div>
+                  <div class="hw-box-title">3. Batas Arus & Mode Balancer</div>
+                  <div class="hw-box-subtitle">Limit beban charger & penyeimbang sel</div>
+                </div>
+                <span class="badge-tag btn-pastel-yellow" id="hw-limit-val">90 A Limit</span>
+              </div>
+
+              <input type="range" min="10" max="150" step="5" value="90" id="slider-hw-limit" class="pastel-slider" oninput="updateCurrentLimit(this.value)">
+              
+              <div style="display:flex; gap:6px;">
+                <button class="btn btn-xs btn-pastel-mint" onclick="sendHardwareCommand('SET_BALANCER', 'AUTO')">⚖️ Balancer Auto</button>
+                <button class="btn btn-xs btn-subtle" onclick="sendHardwareCommand('SET_BALANCER', 'FORCE')">⚡ Paksa Balancer</button>
+                <button class="btn btn-xs btn-subtle" onclick="sendHardwareCommand('SET_BALANCER', 'OFF')">Nonaktif</button>
+              </div>
+              <span style="font-size:0.7rem; color:var(--text-dim);">Perintah: SET_CURRENT_LIMIT & SET_BALANCER</span>
+            </div>
+
+          </div>
+
+          <!-- Emergency Kill Switch (E-Stop) -->
+          <div style="margin-top:20px; background:rgba(239, 68, 68, 0.08); border:1px solid rgba(239, 68, 68, 0.3); border-radius:var(--radius-md); padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h4 style="font-size:0.92rem; font-weight:700; color:#ef4444; display:flex; align-items:center; gap:8px;">
+                🚨 SAKELAR DARURAT PERANGKAT KERAS (E-STOP PROTOKOL ASIL-D)
+              </h4>
+              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
+                Menekan tombol ini akan secara instan memutuskan kontaktor utama tegangan tinggi, menolkan arus, dan memancarkan sinyal darurat ke prototipe.
+              </p>
+            </div>
+
+            <div style="display:flex; gap:10px;">
+              <button class="btn-estop-tactile" id="btn-hw-estop" onclick="triggerHardwareEstop()">
+                🛑 TRIP EMERGENCY STOP
+              </button>
+              <button class="btn btn-sm btn-subtle btn-pill" id="btn-hw-estop-reset" onclick="resetHardwareEstop()" style="display:none;">
+                🔄 Reset E-Stop
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Serial & Command Monitor -->
+          <div class="serial-monitor-container">
+            <div class="serial-monitor-header">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="width:8px; height:8px; border-radius:50%; background:#4ade80;"></span>
+                <span>Konsol Serial Monitor & Pertukaran Data Prototipe</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-xs btn-subtle" onclick="sendHardwareCommand('PING', 1)">📡 Ping</button>
+                <button class="btn btn-xs btn-subtle" onclick="sendHardwareCommand('READ_CELLS', 1)">🔋 Baca 16S</button>
+                <button class="btn btn-xs btn-subtle" onclick="clearSerialLog()">Bersihkan Log</button>
+              </div>
+            </div>
+
+            <div class="serial-monitor-body" id="serial-terminal-log">
+              <div class="serial-line info">[00:00:00.000] ECOBAT Hardware Prototype Bridge Diinisialisasi. Menunggu koneksi...</div>
+              <div class="serial-line info">[00:00:00.100] Port USB Serial dan endpoint REST siap menerima stream prototipe.</div>
+            </div>
+
+            <div class="serial-input-bar">
+              <input type="text" id="serial-input-custom" class="serial-cmd-input" placeholder='Ketik perintah prototipe, e.g. {"cmd":"READ_CELLS"} atau SET_FAN_PWM 80' onkeypress="if(event.key==='Enter') sendCustomSerialCommand()">
+              <button class="btn btn-xs btn-pastel-cyan" onclick="sendCustomSerialCommand()">Kirim ➔</button>
+            </div>
+          </div>
+
+          <!-- Hardware Sketch Documentation Drawer -->
+          <div class="card-pastel mt-20">
+            <div class="card-header">
+              <div class="card-title-group">
+                <h3>Skema Rangkaian & Berkas Firmware Arduino/ESP32</h3>
+                <p>Flash firmware siap pakai ini ke board ESP32 atau Arduino untuk langsung tersambung ke web ini.</p>
+              </div>
+              <button class="btn btn-sm btn-pastel-cyan" onclick="copyFirmwareSketch()">📋 Salin Kode C++ Firmware</button>
+            </div>
+            <div class="card-body">
+              <div class="grid-3col mb-16">
+                <div class="stat-card">
+                  <span class="stat-lbl">Relay Kontaktor</span>
+                  <span class="stat-num text-pastel-cyan" style="font-size:0.95rem;">GPIO 19</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-lbl">Cooling Fan PWM</span>
+                  <span class="stat-num text-pastel-mint" style="font-size:0.95rem;">GPIO 18 (25 kHz)</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-lbl">Transistor Active Balancer</span>
+                  <span class="stat-num text-pastel-yellow" style="font-size:0.95rem;">GPIO 21</span>
+                </div>
+              </div>
+              <p style="font-size:0.78rem; color:var(--text-muted);">
+                Berkas firmware lengkap tersedia di repositori: <code>prototype_firmware/ecobat_esp32_firmware.ino</code>. Buka file tersebut dengan Arduino IDE atau VS Code PlatformIO, lalu klik Upload!
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- =========================================================
+         SECTION 2: AI ANALYTICS (LSTM PREDICTIONS & DQN RL STRATEGY)
+         ========================================================= -->
+    <div class="nav-section" id="nav-analytics">
+      
+      <!-- LSTM Cards -->
+      <div class="grid-3col mb-20">
+        
+        <div class="pred-pastel-card">
+          <div class="ppc-head">
+            <span class="ppc-title">Prediksi SoC (State of Charge)</span>
+            <span class="badge-tag btn-pastel-lavender">LSTM Engine</span>
+          </div>
+          <div class="ppc-val text-pastel-cyan" id="lstm-soc">64.5%</div>
+          <div class="ppc-meta">Metrik Evaluasi: <strong>MAE 0.42% | RMSE 0.58%</strong></div>
+          <div class="pastel-progress"><div class="progress-bar-fill" id="bar-soc" style="width: 64.5%; background:var(--pastel-cyan);"></div></div>
+        </div>
+
+        <div class="pred-pastel-card">
+          <div class="ppc-head">
+            <span class="ppc-title">Prediksi SoH (State of Health)</span>
+            <span class="badge-tag btn-pastel-mint">LSTM Engine</span>
+          </div>
+          <div class="ppc-val text-pastel-mint" id="lstm-soh">97.8%</div>
+          <div class="ppc-meta">Metrik Evaluasi: <strong>MAE 0.08% | RMSE 0.12%</strong></div>
+          <div class="pastel-progress"><div class="progress-bar-fill" id="bar-soh" style="width: 97.8%; background:var(--pastel-mint);"></div></div>
+        </div>
+
+        <div class="pred-pastel-card">
+          <div class="ppc-head">
+            <span class="ppc-title">Prediksi RUL (Remaining Useful Life)</span>
+            <span class="badge-tag btn-pastel-yellow">LSTM Engine</span>
+          </div>
+          <div class="ppc-val text-pastel-yellow" id="lstm-rul">8,900 Siklus</div>
+          <div class="ppc-meta">Batas End of Life (EOL): <strong>80.0% SoH</strong></div>
+          <div class="pastel-progress"><div class="progress-bar-fill" id="bar-rul" style="width: 89%; background:var(--pastel-yellow);"></div></div>
+        </div>
+
+      </div>
+
+      <!-- DQN Strategy Grid -->
+      <div class="grid-2col mb-20">
+        
+        <!-- DQN Recommended Action -->
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2>Rekomendasi Aksi Agent DQN Reinforcement Learning</h2>
+              <p>Optimasi autonomous efisiensi energi & mitigasi degradasi cell</p>
+            </div>
+            <span class="badge-tag btn-pastel-mint" id="risk-level-badge">RISK: AMAN</span>
+          </div>
+          <div class="card-body">
+            
+            <div class="action-banner-pastel">
+              <span class="ab-lbl">AKSI OPTIMAL (Q-VALUE TERTINGGI):</span>
+              <div class="ab-name" id="action-recommended-name">Discharge / Drive Mode</div>
+              <p class="ab-desc" id="action-recommended-desc">Aksi optimal untuk kebutuhan daya berkendara dengan batas stress suhu yang diperbolehkan.</p>
+            </div>
+
+            <div class="q-matrix-list">
+              <h3>Matriks Nilai Q-Values Per Aksi:</h3>
+              <div class="q-rows-group">
+                <div class="q-row-pastel" id="q-act-0">
+                  <span class="q-lbl">0: Idle / Standby</span>
+                  <div class="q-track-bg"><div class="q-track-fill" style="width: 20%;"></div></div>
+                  <span class="q-val-num">2.41</span>
+                </div>
+                <div class="q-row-pastel" id="q-act-1">
+                  <span class="q-lbl">1: Slow Charge</span>
+                  <div class="q-track-bg"><div class="q-track-fill" style="width: 45%;"></div></div>
+                  <span class="q-val-num">5.82</span>
+                </div>
+                <div class="q-row-pastel" id="q-act-2">
+                  <span class="q-lbl">2: Normal Charge</span>
+                  <div class="q-track-bg"><div class="q-track-fill" style="width: 60%;"></div></div>
+                  <span class="q-val-num">7.90</span>
+                </div>
+                <div class="q-row-pastel" id="q-act-3">
+                  <span class="q-lbl">3: Fast Charge</span>
+                  <div class="q-track-bg"><div class="q-track-fill" style="width: 30%;"></div></div>
+                  <span class="q-val-num">3.15</span>
+                </div>
+                <div class="q-row-pastel active-q" id="q-act-4">
+                  <span class="q-lbl">4: Drive Mode</span>
+                  <div class="q-track-bg"><div class="q-track-fill" style="width: 85%;"></div></div>
+                  <span class="q-val-num">11.45</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Protection Actuator Output & Reward Breakdown -->
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2>Rekomendasi Proteksi & Aktuator BMS</h2>
+              <p>Pembatasan beban arus dan manajemen sistem pendingin (cooling fan)</p>
+            </div>
+          </div>
+          <div class="card-body">
+            
+            <div class="actuator-grid-3col">
+              <div class="act-pastel-box">
+                <span class="ap-lbl">Batas Charge Rate</span>
+                <span class="ap-val text-pastel-cyan" id="rec-charge-rate">1.0 C-Rate</span>
+              </div>
+              <div class="act-pastel-box">
+                <span class="ap-lbl">Limit Arus Maksimum</span>
+                <span class="ap-val text-pastel-yellow" id="rec-current-limit">90 A</span>
+              </div>
+              <div class="act-pastel-box">
+                <span class="ap-lbl">Cooling Fan Speed</span>
+                <span class="ap-val text-pastel-mint" id="rec-thermal-status">Low (25%)</span>
+              </div>
+            </div>
+
+            <div class="reward-penalty-box mt-20">
+              <h3>Evaluasi Faktor Reward & Penalty Agent:</h3>
+              <div class="rp-grid">
+                <div>
+                  <span class="rp-hdr text-pastel-mint">Reward Factors (+)</span>
+                  <ul id="reward-factors-list" class="rp-bullet-list">
+                    <li>✅ Suhu Baterai Stabil (15 - 35°C)</li>
+                    <li>✅ Rentang Operasi SoC Aman (20 - 90%)</li>
+                  </ul>
+                </div>
+                <div>
+                  <span class="rp-hdr text-pastel-coral">Penalty Factors (-)</span>
+                  <ul id="penalty-factors-list" class="rp-bullet-list">
+                    <li>🟢 Minim Degradasi SoH Per Siklus</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-box mt-16" id="risk-detail-box">
+              <strong>Status Proteksi Otonom:</strong> Baterai berada pada rentang operasi normal. Tidak ada ancaman proteksi aktif.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- =========================================================
+         SECTION 3: ANALYTICS CHARTS (MULTI-CHART REAL-TIME DISPLAY)
+         ========================================================= -->
+    <div class="nav-section" id="nav-charts">
+      <div class="charts-grid-2x2">
+        
+        <!-- Chart 1: Telemetry -->
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3>1. Telemetri Real-Time (Tegangan, Arus, Suhu)</h3>
+              <p>Sumbu ganda dengan smoothing kurva Bezier pastel</p>
+            </div>
+          </div>
+          <div class="card-body"><div class="chart-height-std"><canvas id="chart-telemetry"></canvas></div></div>
+        </div>
+
+        <!-- Chart 2: SoC vs DoD -->
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3>2. Tren State of Charge (SoC) vs Depth of Discharge (DoD)</h3>
+              <p>Dinamika kapasitas energi baterai terhadap waktu</p>
+            </div>
+          </div>
+          <div class="card-body"><div class="chart-height-std"><canvas id="chart-soc"></canvas></div></div>
+        </div>
+
+        <!-- Chart 3: DQN Reward Convergence -->
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3>3. Kurva Konvergensi Reward Reinforcement Learning (DQN)</h3>
+              <p>Evaluasi nilai reward agent per episode pelatihan</p>
+            </div>
+          </div>
+          <div class="card-body"><div class="chart-height-std"><canvas id="chart-rewards"></canvas></div></div>
+        </div>
+
+        <!-- Chart 4: SoH & RUL -->
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3>4. Kurva Degradasi SoH & Proyeksi RUL Siklus</h3>
+              <p>Proyeksi batas garansi baterai hingga batas End-of-Life (80%)</p>
+            </div>
+          </div>
+          <div class="card-body"><div class="chart-height-std"><canvas id="chart-soh"></canvas></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =========================================================
+         SECTION 4: RESEARCH & AUDIT LOGS
+         ========================================================= -->
+    <div class="nav-section" id="nav-research">
+      
+      <!-- Pipeline 10 Steps -->
+      <div class="card-pastel mb-20">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2>Metodologi Penelitian & Arsitektur Pipeline 10 Tahapan</h2>
+            <p>Integrasi komprehensif Time-Series LSTM dan Autonomous DQN RL</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="pipeline-grid-10">
+            <div class="p-step"><span class="p-num">01</span><span class="p-name">Akuisisi Sinyal</span></div>
+            <div class="p-step"><span class="p-num">02</span><span class="p-name">Validasi Batas</span></div>
+            <div class="p-step"><span class="p-num">03</span><span class="p-name">Penapis EMA</span></div>
+            <div class="p-step"><span class="p-num">04</span><span class="p-name">Windowing Data</span></div>
+            <div class="p-step"><span class="p-num">05</span><span class="p-name">Prediksi LSTM</span></div>
+            <div class="p-step"><span class="p-num">06</span><span class="p-name">DQN State Solver</span></div>
+            <div class="p-step"><span class="p-num">07</span><span class="p-name">Reward Matrix</span></div>
+            <div class="p-step"><span class="p-num">08</span><span class="p-name">Aktuator Proteksi</span></div>
+            <div class="p-step"><span class="p-num">09</span><span class="p-name">Web Dashboard</span></div>
+            <div class="p-step"><span class="p-num">10</span><span class="p-name">Audit Log Histori</span></div>
+          </div>
+
+          <div class="research-math-grid mt-20">
+            <div class="math-card">
+              <h4>Formulasi Matematika Reward DQN:</h4>
+              <pre class="math-code">
+Reward = R_soc + R_temp - Penalty_degradation
+R_soc  = +1.0  jika 20% &lt;= SoC &lt;= 90% else -3.0
+R_temp = +1.0  jika 15°C &lt;= Temp &lt;= 35°C else -4.0
+FastCharge_Penalty = -2.0 jika Action==3 & Temp > 32°C
+Degradation_penalty = (Degradasi SoH) * 25.0
+              </pre>
+            </div>
+
+            <div class="math-card">
+              <h4>Model Simulasi Degradasi SoH:</h4>
+              <pre class="math-code">
+Degradation = 0.00008 + Temp_pen + Current_pen + DoD_pen
+Temp_pen    = max(0, Temperature - 35.0) * 0.00008
+Current_pen = (abs(Current) / 120.0) * 0.00005
+DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dataset Logs Table & Export Controls -->
+      <div class="card-pastel">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2>Log Histori Telemetri & Audit Dataset Real-Time</h2>
+            <p>Perekaman parameter historis untuk analisis performa dan retraining model</p>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn btn-sm btn-pastel-cyan" id="btn-export-csv">Unduh Log CSV</button>
+            <button class="btn btn-sm btn-pastel-lavender" id="btn-export-json">Ekspor Snapshot JSON</button>
+            <button class="btn btn-sm btn-subtle" onclick="window.print()">Cetak Laporan PDF</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="max-height: 400px; overflow-y: auto;" class="table-responsive-container">
+            <table class="pastel-table">
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Waktu</th>
+                  <th>Tegangan</th>
+                  <th>Arus</th>
+                  <th>Suhu</th>
+                  <th>SoC</th>
+                  <th>SoH</th>
+                  <th>DoD</th>
+                  <th>Siklus</th>
+                  <th>Prediksi RUL</th>
+                  <th>Status</th>
+                  <th>Aksi DQN</th>
+                </tr>
+              </thead>
+              <tbody id="log-table-body">
+                <!-- Dynamically populated in app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================
+         SECTION 5: ABOUT ECOBAT
+         ========================================================= -->
+    <div class="nav-section" id="nav-about">
+      <div class="grid-2col">
+        
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2>Tentang ECOBAT Technologies</h2>
+              <p>Pelopor Perangkat Lunak Manajemen Baterai Cerdas Berbasis AI</p>
+            </div>
+          </div>
+          <div class="card-body" style="display:flex; flex-direction:column; gap:14px; font-size:0.86rem;">
+            <div class="about-logo-banner">
+              <img src="assets/ecobat-logo-new.png" alt="Ecobat Sustainable Power Solutions" class="about-full-logo-img">
+            </div>
+            <p><strong>ECOBAT Technologies (Sustainable Power Solutions)</strong> adalah penyedia sistem manajemen baterai cerdas (Smart AI BMS) untuk kendaraan listrik (EV) dan sistem penyimpanan energi (Energy Storage Systems). Kami memadukan kecerdasan buatan deret waktu <em>LSTM (Long Short-Term Memory)</em> dan pengambil keputusan otonom <em>Deep Q-Network (DQN) Reinforcement Learning</em>.</p>
+            
+            <p>Arsitektur kami terbukti memperpanjang umur pakai baterai hingga 30%, mencegah risiko <em>thermal runaway</em>, serta memaksimalkan efisiensi energi kendaraan secara adaptif.</p>
+
+            <div class="slider-box">
+              <h3 style="font-size:0.85rem; color:var(--pastel-cyan); margin-bottom:8px;">Spesifikasi Perangkat BMS ECOBAT:</h3>
+              <ul style="padding-left:18px; font-size:0.8rem; color:var(--text-muted); display:flex; flex-direction:column; gap:5px;">
+                <li><strong>Nominal Pack Architecture:</strong> 350.0 V DC (16-Cell Series Submodule)</li>
+                <li><strong>Max Life Throughput:</strong> 10,000+ Siklus Ekuivalen</li>
+                <li><strong>Kriteria End-of-Life (EOL):</strong> 80.0% State of Health (SoH)</li>
+                <li><strong>Antarmuka Komunikasi:</strong> CAN-Bus 2.0B / MODBUS RS-485 (500 kbps)</li>
+                <li><strong>Fungsional Safety:</strong> ISO 26262 ASIL-D Compliant</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-pastel">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h2>Sertifikasi & Integrasi Sistem</h2>
+              <p>Dokumentasi penelitian & garansi keandalan sistem</p>
+            </div>
+          </div>
+          <div class="card-body" style="display:flex; flex-direction:column; gap:14px; font-size:0.86rem;">
+            <div class="action-banner-pastel">
+              <h4 style="font-size:0.85rem; margin-bottom:6px; color:#0369a1;">📌 Catatan Pengujian Real-Time:</h4>
+              <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5;">Dashboard ini terhubung langsung dengan mesin simulasi berkecepatan tinggi yang menyimulasikan dinamika fisik sel baterai secara akurat, termasuk degradasi elektrokimia SEI layer, kenaikan resistansi internal, dan perpindahan panas Joule heating.</p>
+            </div>
+
+            <div class="slider-box">
+              <h4 style="font-size:0.84rem; margin-bottom:6px;">Info Rilis ECOBAT Enterprise:</h4>
+              <p style="font-size:0.8rem; color:var(--text-muted);"><strong>Versi:</strong> v3.0 Enterprise Real-time Pastel Release</p>
+              <p style="font-size:0.8rem; color:var(--text-muted);"><strong>Dukungan Platform:</strong> Desktop, Tablet, Smartphone (iOS & Android)</p>
+              <p style="font-size:0.8rem; color:var(--text-muted);"><strong>Backend Engine:</strong> Python Server-Sent Events (SSE), Scikit-Learn MLP / TensorFlow LSTM, DQN Solver</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =========================================================
+       CORPORATE FOOTER
+       ========================================================= -->
+  <footer class="corporate-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="brand-logo-icon brand-logo-img-wrap" style="width:36px; height:36px;">
+            <img src="assets/ecobat-icon-new.png" alt="ECOBAT Icon" class="brand-logo-img">
+          </div>
+          <h3>ecobat Technologies</h3>
+        </div>
+        <p class="footer-text">Sustainable Power Solutions — Solusi Cerdas AI BMS Enterprise untuk Kendaraan Listrik dan Energy Storage System Modern.</p>
+        <div class="footer-badges">
+          <span class="badge-tag btn-pastel-mint">ISO 26262 ASIL-D</span>
+          <span class="badge-tag btn-pastel-cyan">CAN-Bus 2.0B</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="activateNavSection('nav-dashboard')">Dashboard Telemetri & Sel</a></li>
+          <li><a href="#" onclick="activateNavSection('nav-analytics')">AI Analytics & DQN</a></li>
+          <li><a href="#" onclick="activateNavSection('nav-charts')">Grafik Analitik</a></li>
+          <li><a href="#" onclick="activateNavSection('nav-research')">Riset & Metodologi</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Teknologi AI</h4>
+        <ul class="footer-links">
+          <li><span>LSTM Time-Series Predictor</span></li>
+          <li><span>DQN Reinforcement Learning</span></li>
+          <li><span>Exponential Moving Average (EMA)</span></li>
+          <li><span>Remaining Useful Life (RUL)</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak & Status</h4>
+        <ul class="footer-links">
+          <li><span>Email: support@ecobat-bms.ai</span></li>
+          <li><span>Pusat Riset: EV Technology Innovation Hub</span></li>
+          <li><span>Telemetri: Real-Time Stream Online</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 ECOBAT Technologies Ltd. Seluruh hak cipta dilindungi. Smart AI Battery Management System.</p>
+    </div>
+  </footer>
+
+  </div> <!-- end #view-dashboard -->
+
+  <!-- =========================================================
+       VERCEL AI SDK AGENT COPILOT (FLOATING LAUNCHER & DRAWER)
+       ========================================================= -->
+  <button class="ai-copilot-fab" id="ai-copilot-fab" onclick="toggleAiCopilotDrawer()" title="Buka ECOBAT AI Copilot (Vercel AI SDK ToolLoopAgent)">
+    <span class="ai-fab-icon">🤖</span>
+    <span class="ai-fab-text">AI Copilot</span>
+    <span class="ai-fab-badge">AI SDK</span>
+  </button>
+
+  <aside class="ai-copilot-drawer" id="ai-copilot-drawer" aria-label="ECOBAT AI Agent Copilot">
+    <div class="ai-copilot-header">
+      <div class="ai-copilot-brand">
+        <div class="ai-copilot-avatar">
+          <img src="assets/ecobat-icon-new.png" alt="ECOBAT AI" style="width:24px; height:24px; object-fit:contain;">
+        </div>
+        <div>
+          <h3>ECOBAT AI Agent Copilot</h3>
+          <p id="ai-copilot-engine-badge">Vercel AI SDK v7 • ToolLoopAgent • gemini-3.5-flash</p>
+        </div>
+      </div>
+      <button class="icon-btn" onclick="toggleAiCopilotDrawer()" title="Tutup AI Copilot">✕</button>
+    </div>
+
+    <div class="ai-copilot-quick-prompts">
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Lakukan audit kesehatan pack 350V dan keseimbangan sel 16S saat ini')">
+        🔍 Audit Pack &amp; 16S
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Suhu baterai meningkat, optimasi kecepatan kipas PWM dan aktifkan balancer otomatis')">
+        ❄️ Optimasi Kipas PWM
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Evaluasi matriks Q-Value DQN untuk rekomendasi pengisian optimal')">
+        🧠 Strategi DQN RL
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Hitung proyeksi penghematan ROI untuk armada 120 bus listrik')">
+        💰 Hitung ROI 120 EV
+      </button>
+    </div>
+
+    <div class="ai-copilot-messages" id="ai-copilot-messages">
+      <div class="ai-msg-bubble assistant">
+        <div class="ai-msg-meta">🤖 ECOBAT ToolLoopAgent • Siaga</div>
+        <div class="ai-msg-text">
+          Halo! Saya <strong>ECOBAT AI Copilot</strong> yang dibangun menggunakan <strong>Vercel AI SDK (<code>ToolLoopAgent</code>)</strong>. Saya memiliki akses langsung ke 5 <em>tools</em> telemetri &amp; aktuator BMS:
+          <ul style="margin:6px 0 0 16px; font-size:0.75rem;">
+            <li><code>inspectBatteryTelemetry</code> — Audit tegangan, arus, SoC, SoH &amp; ASIL-D</li>
+            <li><code>analyze16SCellBalancing</code> — Cek deviasi ΔV 16 sel seri</li>
+            <li><code>recommendDqnStrategy</code> — Evaluasi Q-Values Reinforcement Learning</li>
+            <li><code>controlBmsHardwareActuator</code> — Ubah kipas PWM, batas arus &amp; balancer</li>
+            <li><code>calculateFleetRoi</code> — Kalkulasi penghematan armada EV</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <form class="ai-copilot-input-bar" onsubmit="handleAiCopilotSubmit(event)">
+      <input
+        type="text"
+        id="ai-copilot-input"
+        placeholder="Tanyakan kondisi baterai atau perintahkan aktuator BMS..."
+        autocomplete="off"
+      >
+      <button type="submit" class="btn btn-sm btn-pastel-cyan btn-pill" id="ai-copilot-send-btn">
+        Kirim ➔
+      </button>
+    </form>
+  </aside>
+
+  <script src="app.js?v=3.3.0"></script>
+</body>
+</html>

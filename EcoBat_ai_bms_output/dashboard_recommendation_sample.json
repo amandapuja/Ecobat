@@ -1,0 +1,34 @@
+{
+  "status": "SUCCESS",
+  "data_source": "Real-Time Telemetry (Thevenin 2-RC Dynamics)",
+  "timestamp": "2026-10-25 01:17:07",
+  "input_state": {
+    "voltage_v": 350.2,
+    "current_a": -45.2,
+    "temperature_c": 29.4,
+    "soc_percent": 64.5,
+    "soh_percent": 97.8,
+    "dod_percent": 35.5,
+    "delta_v_mv": 14.2
+  },
+  "recommended_action": "Discharge / Drive Mode (Optimal Traksi)",
+  "predicted_rul_cycles": 8920,
+  "risk_level": "AMAN",
+  "risk_message": "Baterai beroperasi dalam kurva termal optimal Thevenin. Balancer 16S aktif seimbang.",
+  "metrics_evaluated": {
+    "dataset_type": "Real-Time Thevenin 2-RC Battery Telemetry",
+    "sample_count": 3600,
+    "soc_mae": 0.8525,
+    "soh_mae": 0.0094,
+    "rul_mae": 3.36,
+    "soc_rmse": 0.9955,
+    "soh_rmse": 0.0105,
+    "rul_rmse": 3.75,
+    "r2_scores": {
+      "soc_r2": 0.4389,
+      "soh_r2": -4.0503,
+      "rul_r2": -1.5718
+    },
+    "training_timestamp": "2026-10-25 01:13:15"
+  }
+}

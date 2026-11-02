@@ -1,0 +1,25 @@
+{
+  "name": "ecobat",
+  "version": "1.0.0",
+  "description": "Sistem Manajemen Baterai Cerdas (Smart AI Battery Management System) untuk Kendaraan Listrik (EV) dengan arsitektur multi-view terpadu: 1. **🌐 Halaman Landing Page Khusus**: Halaman beranda elegan dengan hero presentation, spesifikasi nominal 350V, ikhtisar fitur enterprise, dan portal autentikasi peran. 2. **🔐 Portal Login Interaktif & Direct Dashboard Redirect**: Pilihan peran pengguna (Lead Engineer, Operator EV, Peneliti Lab), demo 1-klik masuk langsung ke live telemetri dashboard, serta tombol navigasi cepat kembali dan logout. 3. **🎨 Palet Warna Pastel Hijau (Sage & Matcha) & Cream (Linen & Oat)**: Warna pastel yang menenangkan, estetis, dan modern sesuai standar visual tier-1, dengan dukungan Mode Terang dan Mode Gelap Midnight. 4. **🔋 Animasi Baterai Interaktif 60-FPS & Suite Remotion Video**: Simulasi dinamika ion lithium $Li^+$, aliran elektron sirkuit luar, pendaran termal radiatif, dan panduan edukasi audio-visual terintegrasi. 5. **🔌 Pusat Hub Prototipe Real-Time (Web Serial API & WiFi Gateway)**: Kendali aktuator fisik nyata (kontaktor relay, fan PWM, pembatas arus pengisian, active balancing 16S, dan E-Stop darurat) yang langsung terhubung ke microcontroller ESP32 atau Arduino.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amandapuja/Ecobat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/amandapuja/Ecobat/issues"
+  },
+  "homepage": "https://github.com/amandapuja/Ecobat#readme",
+  "dependencies": {
+    "ai": "^7.0.159",
+    "zod": "^4.6.7"
+  }
+}

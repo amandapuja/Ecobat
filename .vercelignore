@@ -1,0 +1,9 @@
+remotion-repo/
+remotion_ecobat/
+__pycache__/
+.git/
+*.keras
+*.pkl
+*.csv
+*.py
+
