@@ -680,6 +680,20 @@ function initNavigationHubs() {
   });
 }
 
+function toggleDashboardSidebar() {
+  const sidebar = document.getElementById("dashboard-sidebar");
+  const backdrop = document.getElementById("sidebar-backdrop");
+  if (!sidebar) return;
+  const isOpen = sidebar.classList.contains("open");
+  if (isOpen) {
+    sidebar.classList.remove("open");
+    if (backdrop) backdrop.classList.remove("active");
+  } else {
+    sidebar.classList.add("open");
+    if (backdrop) backdrop.classList.add("active");
+  }
+}
+
 function activateNavSection(targetNavId) {
   const hubBtns = document.querySelectorAll(".nav-hub-btn");
   hubBtns.forEach(b => {
@@ -694,6 +708,14 @@ function activateNavSection(targetNavId) {
   const targetSec = document.getElementById(targetNavId);
   if (targetSec) {
     targetSec.classList.add("active");
+  }
+
+  // Auto-close sidebar on mobile/tablet screens
+  if (window.innerWidth <= 1024) {
+    const sidebar = document.getElementById("dashboard-sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    if (sidebar) sidebar.classList.remove("open");
+    if (backdrop) backdrop.classList.remove("active");
   }
 
   setTimeout(() => {

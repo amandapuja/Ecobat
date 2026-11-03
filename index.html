@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
-  <link rel="stylesheet" href="styles.css?v=3.3.0">
+  <link rel="stylesheet" href="styles.css?v=3.4.0">
 </head>
 <body>
 
@@ -699,136 +699,172 @@
   <div id="view-dashboard" class="app-view">
 
     <!-- =========================================================
-         APP HEADER & FLOATING NAVIGATION
+         APP HEADER (TOP BAR: BRAND, PROFILE & QUICK ACTIONS)
          ========================================================= -->
     <header class="app-header floating-navbar" id="dashboard-navbar">
       <div class="header-inner">
         
-        <!-- Brand Logo -->
-        <div class="brand-group" onclick="activateNavSection('nav-dashboard')">
-          <div class="brand-logo-icon brand-logo-img-wrap">
-            <img src="assets/ecobat-icon-new.png" alt="ECOBAT Logo" class="brand-logo-img">
+        <!-- Left: Sidebar Toggle & Brand Logo -->
+        <div class="header-left-group" style="display: flex; align-items: center; gap: 12px;">
+          <button class="icon-btn sidebar-toggle-btn" id="sidebar-toggle-btn" onclick="toggleDashboardSidebar()" title="Buka/Tutup Menu Samping (Sidebar)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <div class="brand-group" onclick="activateNavSection('nav-dashboard')">
+            <div class="brand-logo-icon brand-logo-img-wrap">
+              <img src="assets/ecobat-icon-new.png" alt="ECOBAT Logo" class="brand-logo-img">
+            </div>
+            <div class="brand-text-col">
+              <h1 class="brand-title">ecobat <span>Technologies</span></h1>
+              <p class="brand-sub">Sustainable Power Solutions • AI BMS</p>
+            </div>
           </div>
-          <div class="brand-text-col">
-            <h1 class="brand-title">ecobat <span>Technologies</span></h1>
-            <p class="brand-sub">Sustainable Power Solutions • AI BMS</p>
+        </div>
+
+        <!-- Header Right Controls -->
+        <div class="header-right">
+          <!-- User Profile Badge -->
+          <div class="user-profile-badge" id="hdr-user-badge">
+            <span style="width:7px; height:7px; border-radius:50%; background:#489980; display:inline-block;"></span>
+            <span id="user-display-name">Ir. Amanda Puja</span>
           </div>
+
+          <!-- Quick Return to Landing Page -->
+          <button class="btn-nav-landing-link" onclick="showLandingView()" title="Kembali ke Landing Page">
+            🌐 Landing
+          </button>
+
+          <!-- Logout Button -->
+          <button class="btn-nav-landing-link" onclick="logoutUser()" title="Logout dari Dashboard">
+            🚪 Keluar
+          </button>
+
+          <!-- Prototype Hardware Status Pill -->
+          <div class="status-pill status-online" id="status-pill-proto" style="cursor: pointer;" onclick="activateNavSection('nav-prototype')" title="Status Prototype Hardware (Klik untuk membuka Hub)">
+            <span class="status-dot" id="proto-status-dot"></span>
+            <span id="proto-status-text">HW: SIAGA</span>
+          </div>
+
+          <!-- Connection Status Pill -->
+          <div class="status-pill status-online hide-on-mobile" id="status-pill-main">
+            <span class="status-dot"></span>
+            <span id="status-pill-text">LIVE BUS OK</span>
+          </div>
+
+          <!-- Audio Alert Toggle -->
+          <button class="icon-btn" id="btn-toggle-sound" title="Aktif/Nonaktifkan Suara Alarm Realtime">
+            <span id="sound-icon">🔊</span>
+          </button>
+
+          <!-- Pastel Theme Toggle (Light / Dark) -->
+          <button class="icon-btn" id="btn-toggle-theme" title="Beralih Mode Warna Pastel (Terang/Gelap)">
+            <span id="theme-icon">🌙</span>
+          </button>
+
+          <!-- Stream Play/Pause -->
+          <button class="btn btn-sm btn-pastel-cyan" id="btn-toggle-sim">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+            <span id="sim-btn-label">Jeda Stream</span>
+          </button>
         </div>
 
-      <!-- Navigation Hubs (Desktop) -->
-      <nav class="main-nav-hubs" id="desktop-nav">
-        <button class="nav-hub-btn active" data-nav="nav-dashboard">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          Dashboard & Sel
-        </button>
-        <button class="nav-hub-btn" data-nav="nav-explainer">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><polyline points="10 10 8 13 12 13 10 16"/></svg>
-          Animasi Baterai & AI
-        </button>
-        <button class="nav-hub-btn" data-nav="nav-prototype">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 4v10M8 8h8M5 12h14"/></svg>
-          Prototype Hub (Serial/IoT)
-        </button>
-        <button class="nav-hub-btn" data-nav="nav-analytics">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          AI LSTM & DQN
-        </button>
-        <button class="nav-hub-btn" data-nav="nav-charts">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          Grafik Analitik
-        </button>
-        <button class="nav-hub-btn" data-nav="nav-research">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          Riset & Log
-        </button>
-        <button class="nav-hub-btn" data-nav="nav-about">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          Tentang Kami
-        </button>
-      </nav>
-
-      <!-- Header Right Controls -->
-      <div class="header-right">
-        
-        <!-- User Profile Badge -->
-        <div class="user-profile-badge hide-on-tablet" id="hdr-user-badge">
-          <span style="width:7px; height:7px; border-radius:50%; background:#489980; display:inline-block;"></span>
-          <span id="user-display-name">Ir. Amanda Puja</span>
-        </div>
-
-        <!-- Quick Return to Landing Page -->
-        <button class="btn-nav-landing-link hide-on-tablet" onclick="showLandingView()" title="Kembali ke Landing Page">
-          🌐 Landing
-        </button>
-
-        <!-- Logout Button -->
-        <button class="btn-nav-landing-link hide-on-tablet" onclick="logoutUser()" title="Logout dari Dashboard">
-          🚪 Keluar
-        </button>
-
-        <!-- Prototype Hardware Status Pill -->
-        <div class="status-pill status-online hide-on-tablet" id="status-pill-proto" style="cursor: pointer;" onclick="activateNavSection('nav-prototype')" title="Status Prototype Hardware (Klik untuk membuka Hub)">
-          <span class="status-dot" id="proto-status-dot"></span>
-          <span id="proto-status-text">HW: SIAGA</span>
-        </div>
-
-        <!-- Connection Status Pill -->
-        <div class="status-pill status-online hide-on-mobile" id="status-pill-main">
-          <span class="status-dot"></span>
-          <span id="status-pill-text">LIVE BUS OK</span>
-        </div>
-
-        <!-- Navbar Size/Style Customizer -->
-        <button class="icon-btn nav-size-btn" onclick="cycleNavbarLayout()" title="Sesuaikan Ukuran Navbar Ngambang (Normal / Ringkas / Lebar)">
-          <span class="nav-size-indicator">⤢</span>
-        </button>
-
-        <!-- Audio Alert Toggle -->
-        <button class="icon-btn" id="btn-toggle-sound" title="Aktif/Nonaktifkan Suara Alarm Realtime">
-          <span id="sound-icon">🔊</span>
-        </button>
-
-        <!-- Pastel Theme Toggle (Light / Dark) -->
-        <button class="icon-btn" id="btn-toggle-theme" title="Beralih Mode Warna Pastel (Terang/Gelap)">
-          <span id="theme-icon">🌙</span>
-        </button>
-
-        <!-- Stream Play/Pause -->
-        <button class="btn btn-sm btn-pastel-cyan" id="btn-toggle-sim">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <rect x="6" y="4" width="4" height="16"></rect>
-            <rect x="14" y="4" width="4" height="16"></rect>
-          </svg>
-          <span id="sim-btn-label">Jeda Stream</span>
-        </button>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button class="icon-btn mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
       </div>
+    </header>
 
-    </div>
+    <!-- =========================================================
+         DASHBOARD BODY: SIDEBAR NAVIGATION (SAMPING) & MAIN CONTENT
+         ========================================================= -->
+    <div class="dashboard-layout-wrapper">
+      
+      <!-- SIDEBAR NAVIGATION MENU (PINDAH KE SAMPING) -->
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-brand-mini">
+            <span class="sidebar-title-tag">MENU KONTROL BMS</span>
+          </div>
+          <button class="icon-btn sidebar-close-mobile-btn" onclick="toggleDashboardSidebar()" aria-label="Tutup Menu Samping">✕</button>
+        </div>
 
-    <!-- Mobile Drawer -->
-    <div class="mobile-nav-drawer" id="mobile-drawer">
-      <button class="nav-hub-btn active" data-nav="nav-dashboard">📊 Dashboard & Sel Baterai</button>
-      <button class="nav-hub-btn" data-nav="nav-explainer">🔋 Animasi Baterai & Panduan AI</button>
-      <button class="nav-hub-btn" data-nav="nav-prototype">🔌 Prototype Hub (Serial/IoT)</button>
-      <button class="nav-hub-btn" data-nav="nav-analytics">🤖 AI LSTM & DQN</button>
-      <button class="nav-hub-btn" data-nav="nav-charts">📈 Grafik Analitik</button>
-      <button class="nav-hub-btn" data-nav="nav-research">🧪 Riset & Log Histori</button>
-      <button class="nav-hub-btn" data-nav="nav-about">ℹ️ Tentang ECOBAT</button>
-      <div class="mobile-drawer-actions-row">
-        <button class="btn btn-sm btn-subtle" onclick="showLandingView()" style="flex:1;">🌐 Landing Page</button>
-        <button class="btn btn-sm btn-subtle" onclick="logoutUser()" style="flex:1;">🚪 Keluar</button>
-      </div>
-    </div>
-  </header>
+        <nav class="sidebar-nav-list" id="desktop-nav">
+          <button class="sidebar-nav-btn nav-hub-btn active" data-nav="nav-dashboard">
+            <span class="nav-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </span>
+            <span class="nav-btn-text">Dashboard &amp; Sel</span>
+            <span class="nav-btn-indicator">●</span>
+          </button>
+
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-explainer">
+            <span class="nav-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><polyline points="10 10 8 13 12 13 10 16"/></svg>
+            </span>
+            <span class="nav-btn-text">Animasi Baterai &amp; AI</span>
+            <span class="nav-btn-indicator">●</span>
+          </button>
+
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-prototype">
+            <span class="nav-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 4v10M8 8h8M5 12h14"/></svg>
+            </span>
+            <span class="nav-btn-text">Prototype Hub (Serial/IoT)</span>
+            <span class="nav-btn-indicator">●</span>
+          </button>
+
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-analytics">
+            <span class="nav-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </span>
+            <span class="nav-btn-text">AI LSTM &amp; DQN</span>
+            <span class="nav-btn-indicator">●</span>
+          </button>
+
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-charts">
+            <span class="nav-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+            <span class="nav-btn-text">Grafik Analitik</span>
+            <span class="nav-btn-indicator">●</span>
+          </button>
+
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-research">
+            <span class="nav-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </span>
+            <span class="nav-btn-text">Riset &amp; Log</span>
+            <span class="nav-btn-indicator">●</span>
+          </button>
+
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-about">
+            <span class="nav-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </span>
+            <span class="nav-btn-text">Tentang Kami</span>
+            <span class="nav-btn-indicator">●</span>
+          </button>
+        </nav>
+
+        <!-- Sidebar Mini Info Card at bottom -->
+        <div class="sidebar-footer-card">
+          <div class="sidebar-footer-head">
+            <span class="status-dot"></span>
+            <strong>Smart AI BMS v3.4</strong>
+          </div>
+          <p>350V Nominal • 16S Lossless Active Balancer • ISO 26262 ASIL-D Compliant</p>
+        </div>
+      </aside>
+
+      <!-- Sidebar Backdrop on mobile/tablet -->
+      <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleDashboardSidebar()"></div>
+
+      <!-- MAIN CONTENT COLUMN (DI KANAN) -->
+      <div class="dashboard-main-content">
 
   <!-- =========================================================
        REAL-TIME STREAM CONTROLLER STRIP
@@ -2062,6 +2098,9 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
     </div>
   </footer>
 
+      </div> <!-- end .dashboard-main-content -->
+    </div> <!-- end .dashboard-layout-wrapper -->
+
   </div> <!-- end #view-dashboard -->
 
   <!-- =========================================================
@@ -2131,6 +2170,6 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
     </form>
   </aside>
 
-  <script src="app.js?v=3.3.0"></script>
+  <script src="app.js?v=3.4.0"></script>
 </body>
 </html>

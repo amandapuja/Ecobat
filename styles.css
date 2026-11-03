@@ -514,6 +514,239 @@ html[data-theme="dark"] .status-pill.paused {
 }
 
 /* =========================================================
+   DASHBOARD 2-COLUMN SIDEBAR & MAIN CONTENT LAYOUT
+   ========================================================= */
+.dashboard-layout-wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 16px 24px 48px;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+.dashboard-sidebar {
+  width: 270px;
+  min-width: 270px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 88px;
+  max-height: calc(100vh - 104px);
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 18px 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 80;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-sizing: border-box;
+}
+
+html[data-theme="dark"] .dashboard-sidebar {
+  background: rgba(14, 25, 20, 0.78);
+  border: 1px solid rgba(142, 203, 179, 0.22);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6), 0 0 24px rgba(82, 137, 116, 0.12);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-title-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.sidebar-title-tag span {
+  color: var(--pastel-cyan);
+}
+
+.sidebar-close-mobile-btn {
+  display: none;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-xs);
+  font-size: 1rem;
+}
+
+.sidebar-close-mobile-btn:hover {
+  color: var(--text-main);
+}
+
+.sidebar-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.sidebar-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.sidebar-nav-btn .nav-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--bg-input);
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.sidebar-nav-btn .nav-btn-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-nav-btn .nav-btn-indicator {
+  font-size: 0.6rem;
+  opacity: 0;
+  color: var(--pastel-cyan);
+  transition: opacity var(--transition-fast);
+}
+
+.sidebar-nav-btn:hover {
+  color: var(--text-main);
+  background: rgba(148, 163, 184, 0.09);
+  border-color: rgba(148, 163, 184, 0.16);
+  transform: translateX(3px);
+}
+
+.sidebar-nav-btn:hover .nav-btn-icon {
+  color: var(--pastel-cyan);
+  background: rgba(56, 189, 248, 0.14);
+}
+
+.sidebar-nav-btn.active {
+  background: linear-gradient(135deg, rgba(82, 137, 116, 0.14), rgba(56, 189, 248, 0.12));
+  color: var(--text-main);
+  font-weight: 700;
+  border-color: var(--pastel-green-border);
+  box-shadow: 0 4px 14px rgba(82, 137, 116, 0.1);
+}
+
+html[data-theme="dark"] .sidebar-nav-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(167, 139, 250, 0.16));
+  color: var(--pastel-cyan-soft);
+  border-color: var(--pastel-cyan-border);
+}
+
+.sidebar-nav-btn.active .nav-btn-icon {
+  background: var(--pastel-cyan);
+  color: #0d1a16;
+}
+
+.sidebar-nav-btn.active .nav-btn-indicator {
+  opacity: 1;
+}
+
+.sidebar-footer-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.sidebar-footer-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  color: var(--text-main);
+}
+
+.dashboard-main-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.dashboard-main-content .stream-control-strip {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.dashboard-main-content .corporate-hero {
+  margin: 0;
+  max-width: 100%;
+}
+
+.dashboard-main-content .main-container {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.sidebar-toggle-btn {
+  display: none;
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 16, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1040;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.sidebar-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+/* =========================================================
    REAL-TIME STREAM TICKER & SPEED CONTROLLER BAR (FLOATING)
    ========================================================= */
 .stream-control-strip {
@@ -2898,6 +3131,45 @@ html[data-theme="dark"] .view-tab-btn.active {
 }
 
 /* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .sidebar-toggle-btn {
+    display: inline-flex !important;
+  }
+
+  .dashboard-layout-wrapper {
+    padding: 12px 14px 36px;
+    gap: 0;
+  }
+
+  .dashboard-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 290px;
+    min-width: 290px;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0 24px 24px 0;
+    z-index: 1050;
+    transform: translateX(-105%);
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 12px 0 45px rgba(0, 0, 0, 0.5);
+  }
+
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-close-mobile-btn {
+    display: inline-flex;
+  }
+
+  .dashboard-main-content {
+    width: 100%;
+  }
+}
+
 @media (max-width: 1280px) {
   .hero-container { grid-template-columns: 1fr; }
   .landing-hero-grid { grid-template-columns: 1fr; }
