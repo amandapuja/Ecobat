@@ -204,8 +204,10 @@ function runBuiltInAgentFallback(promptText, telemetrySnapshot = {}) {
   const snap = analyzeBmsSnapshot(telemetrySnapshot);
   const toolCalls = [];
   const uiActions = [];
+  let responseTitle = '🤖 Analisis ECOBAT AI Agent (`ToolLoopAgent`)';
+  const customNotes = [];
 
-  // Always inspect telemetry
+  // Always inspect telemetry tool
   toolCalls.push({
     toolName: 'inspectBatteryTelemetry',
     args: { includeSafetyAudit: true },
@@ -220,21 +222,54 @@ function runBuiltInAgentFallback(promptText, telemetrySnapshot = {}) {
     },
   });
 
-  if (q.includes('kipas') || q.includes('fan') || q.includes('panas') || q.includes('suhu') || q.includes('dingin') || q.includes('optimasi')) {
-    const targetFan = snap.temperature > 36 ? '85' : '60';
+  // 1. Kipas PWM / Mitigasi Termal
+  if (q.includes('kipas') || q.includes('fan') || q.includes('panas') || q.includes('suhu') || q.includes('dingin') || q.includes('thermal') || q.includes('optimasi')) {
+    let targetFan = '85';
+    if (q.includes('100') || q.includes('maks') || q.includes('penuh') || q.includes('full')) {
+      targetFan = '100';
+    } else if (q.includes('turun') || q.includes('rendah') || q.includes('pelan')) {
+      targetFan = '30';
+    } else {
+      const matchPwm = q.match(/\b([1-9][0-9]?|100)\s*%?\b/);
+      if (matchPwm && parseInt(matchPwm[1], 10) >= 10 && parseInt(matchPwm[1], 10) <= 100) {
+        targetFan = String(matchPwm[1]);
+      } else {
+        targetFan = snap.temperature > 36 ? '90' : snap.temperature > 30 ? '65' : '40';
+      }
+    }
+
     uiActions.push({
       actuator: 'FAN_PWM',
       value: targetFan,
-      reason: 'Mitigasi termal otomatis oleh AI Copilot',
+      reason: `Pengaturan kecepatan pendingin PWM ke ${targetFan}% sesuai instruksi operator/mitigasi termal.`,
     });
     toolCalls.push({
       toolName: 'controlBmsHardwareActuator',
       args: { actuator: 'FAN_PWM', value: targetFan },
       result: { status: 'EXECUTED', appliedValue: `${targetFan}% PWM` },
     });
+    customNotes.push(`Kipas pendingin PWM berhasil disetel ke **${targetFan}%**.`);
   }
 
-  if (q.includes('sel') || q.includes('16s') || q.includes('balanc') || q.includes('delta') || q.includes('audit')) {
+  // 2. Batas Arus (Current Limit)
+  if (q.includes('limit') || q.includes('batas arus') || q.includes('arus maks')) {
+    const matchAmp = q.match(/\b([1-9][0-9]?|1[0-9]{2}|200)\s*a?\b/i);
+    const targetLim = matchAmp ? matchAmp[1] : (snap.temperature > 36 ? '60' : '100');
+    uiActions.push({
+      actuator: 'CURRENT_LIMIT',
+      value: targetLim,
+      reason: `Pembaruan batas arus proteksi ke ${targetLim} A`,
+    });
+    toolCalls.push({
+      toolName: 'controlBmsHardwareActuator',
+      args: { actuator: 'CURRENT_LIMIT', value: targetLim },
+      result: { status: 'EXECUTED', appliedValue: `${targetLim} A` },
+    });
+    customNotes.push(`Batas arus inverter/charger diperbarui menjadi **${targetLim} A**.`);
+  }
+
+  // 3. Sel 16S & Active Balancer
+  if (q.includes('sel') || q.includes('16s') || q.includes('balanc') || q.includes('delta') || q.includes('audit') || q.includes('seimbang')) {
     toolCalls.push({
       toolName: 'analyze16SCellBalancing',
       args: { thresholdMv: 14 },
@@ -245,15 +280,60 @@ function runBuiltInAgentFallback(promptText, telemetrySnapshot = {}) {
         balancer: snap.balancerMode,
       },
     });
-    if (q.includes('aktif') || q.includes('paksa') || q.includes('force')) {
+    if (q.includes('aktif') || q.includes('paksa') || q.includes('force') || q.includes('seimbangkan')) {
       uiActions.push({
         actuator: 'BALANCER_MODE',
         value: 'FORCE',
-        reason: 'Penyeimbangan aktif 16S diinstruksikan melalui AI Copilot',
+        reason: 'Penyeimbangan aktif 16S diinstruksikan dalam mode FORCE.',
       });
+      customNotes.push(`Active Balancer kapasitif dialihkan ke mode **FORCE** untuk meratakan deviasi ${snap.deltaMv} mV.`);
     }
   }
 
+  // 4. Kontaktor HV
+  if (q.includes('kontaktor') || q.includes('contactor')) {
+    const isClose = q.includes('tutup') || q.includes('sambung') || q.includes('close');
+    const targetContactor = isClose ? 'CLOSED' : 'OPEN';
+    uiActions.push({
+      actuator: 'CONTACTOR',
+      value: targetContactor,
+      reason: `Kontrol kontaktor daya utama HV ke posisi ${targetContactor}`,
+    });
+    toolCalls.push({
+      toolName: 'controlBmsHardwareActuator',
+      args: { actuator: 'CONTACTOR', value: targetContactor },
+      result: { status: 'EXECUTED', appliedValue: targetContactor },
+    });
+    customNotes.push(`Kontaktor HV utama berhasil diubah ke posisi **${targetContactor}**.`);
+  }
+
+  // 5. Preset Skenario
+  if (q.includes('preset') || q.includes('skenario')) {
+    let chosenPreset = 'normal';
+    if (q.includes('overheat') || q.includes('panas')) chosenPreset = 'overheat';
+    else if (q.includes('fast') || q.includes('cepat')) chosenPreset = 'fastcharge';
+    else if (q.includes('regen')) chosenPreset = 'regen';
+    else if (q.includes('aging')) chosenPreset = 'aging';
+
+    uiActions.push({
+      actuator: 'PRESET',
+      value: chosenPreset,
+      reason: `Penerapan profil simulasi telemetri ${chosenPreset}`,
+    });
+    customNotes.push(`Skenario pengujian beralih ke preset **${chosenPreset.toUpperCase()}**.`);
+  }
+
+  // 6. Emergency Stop
+  if (q.includes('estop') || q.includes('darurat') || q.includes('emergency')) {
+    uiActions.push({
+      actuator: 'ESTOP',
+      value: 'TRIPPED',
+      reason: 'Protokol Emergency Stop ASIL-D dipicu oleh operator.',
+    });
+    customNotes.push(`⚠️ **EMERGENCY STOP DIAKTIFKAN**: Kontaktor HV diputus seketika untuk mengamankan pack.`);
+  }
+
+  // 7. DQN & Strategi Reinforcement Learning
   if (q.includes('dqn') || q.includes('q-value') || q.includes('strategi') || q.includes('charge') || q.includes('ai')) {
     toolCalls.push({
       toolName: 'recommendDqnStrategy',
@@ -265,6 +345,7 @@ function runBuiltInAgentFallback(promptText, telemetrySnapshot = {}) {
     });
   }
 
+  // 8. ROI & Fleet Calculation
   if (q.includes('roi') || q.includes('armada') || q.includes('biaya') || q.includes('bus') || q.includes('hemat')) {
     const matchNum = q.match(/\b(\d{2,4})\b/);
     const units = matchNum ? Number(matchNum[1]) : 100;
@@ -278,10 +359,29 @@ function runBuiltInAgentFallback(promptText, telemetrySnapshot = {}) {
         wasteReduced: `${(units * 0.45).toFixed(1)} Ton`,
       },
     });
+    customNotes.push(`Proyeksi ROI armada **${units} unit EV** menghasilkan penghematan **$${savings.toLocaleString('en-US')}** (~32%) dan memperpanjang usia pakai pack hingga +3.2 tahun.`);
+  }
+
+  // 9. Tanya Jawab Teknis ECOBAT (Q&A)
+  if (q.includes('siapa kamu') || q.includes('apa itu ecobat') || q.includes('tentang')) {
+    responseTitle = 'ℹ️ Profil & Kapabilitas ECOBAT AI BMS';
+    customNotes.push(`**ECOBAT Technologies** adalah platform Battery Management System (BMS) cerdas generasi baru untuk kendaraan listrik (EV) dengan arsitektur 350V nominal dan 16S sel seri.`);
+    customNotes.push(`Sistem ini mengintegrasikan **Multi-Output LSTM** (estimasi SoC, SoH, RUL), **Deep Q-Network (DQN) RL** untuk strategi charging otonom, **Lossless Active Balancing** berkapasitansi tinggi (>92% efisiensi muatan), dan kepatuhan standar keselamatan **ISO 26262 ASIL-D**.`);
+  } else if (q.includes('passive') || (q.includes('active') && q.includes('beda'))) {
+    responseTitle = '🔋 Active Balancer vs Passive Balancer';
+    customNotes.push(`**Perbedaan Mendasar Active vs Passive Balancer:**`);
+    customNotes.push(`1. **Lossless Active Balancer (ECOBAT)**: Memindahkan energi dari sel bertegangan tertinggi ke sel terendah menggunakan sirkuit kapasitor/induktor *switched* dengan efisiensi **>92%** tanpa membuang energi menjadi panas.`);
+    customNotes.push(`2. **Passive Balancer Konvensional**: Membakar kelebihan muatan menjadi panas melalui resistor *bleeder*. Hal ini menyebabkan kenaikan suhu lokal (*thermal hotspot*) dan memperpendek usia baterai.`);
+  } else if (q.includes('asil') || q.includes('keselamatan') || q.includes('safety')) {
+    responseTitle = '🛡️ Sertifikasi Keselamatan ISO 26262 ASIL-D';
+    customNotes.push(`Sistem proteksi ECOBAT dirancang dengan integritas otomotif tertinggi (**ASIL-D**):`);
+    customNotes.push(`- Pemantauan tegangan per-sel real-time redundan (*Dual ADC sampling*).`);
+    customNotes.push(`- Ambang batas proteksi tegangan (Under Voltage: 2.80V, Over Voltage: 4.25V).`);
+    customNotes.push(`- Mitigasi *thermal runaway* bertingkat (PWM fan derating -> batas arus -> isolasi kontaktor otomatis dalam <10 ms).`);
   }
 
   const lines = [
-    `### 🤖 Analisis ECOBAT AI Agent (\`ToolLoopAgent\`)`,
+    `### ${responseTitle}`,
     `- **Status Pack 350V**: Tegangan **${snap.voltage} V**, Arus **${snap.current} A** (${snap.powerKw} kW | ${snap.cRate}C), Suhu **${snap.temperature} °C** (*${snap.thermalRisk}*).`,
     `- **Estimasi LSTM**: **SoC ${snap.soc}%** (DoD ${snap.dod}%), **SoH ${snap.soh}%**, Proyeksi RUL **${snap.rulCycles.toLocaleString('id-ID')} siklus**.`,
     `- **Keseimbangan Sel 16S**: Rentang **${snap.minCell} V** (Cell ${String(snap.minCellIdx).padStart(2, '0')}) s/d **${snap.maxCell} V** (Cell ${String(snap.maxCellIdx).padStart(2, '0')}) dengan **ΔV = ${snap.deltaMv} mV** (Mode Balancer: **${snap.balancerMode}**).`,
@@ -292,8 +392,13 @@ function runBuiltInAgentFallback(promptText, telemetrySnapshot = {}) {
     }`,
   ];
 
+  if (customNotes.length > 0) {
+    lines.push('', ...customNotes);
+  }
+
   if (uiActions.length > 0) {
     lines.push(
+      '',
       `- **Tindakan Aktuator Otomatis**: Berhasil mengeksekusi \`${uiActions
         .map(a => `${a.actuator} -> ${a.value}`)
         .join(', ')}\` pada dashboard.`

@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
-  <link rel="stylesheet" href="styles.css?v=3.4.0">
+  <link rel="stylesheet" href="styles.css?v=3.5.0">
 </head>
 <body>
 
@@ -735,12 +735,12 @@
 
           <!-- Quick Return to Landing Page -->
           <button class="btn-nav-landing-link" onclick="showLandingView()" title="Kembali ke Landing Page">
-            🌐 Landing
+            <span>🌐</span> <span class="header-btn-text">Landing</span>
           </button>
 
           <!-- Logout Button -->
           <button class="btn-nav-landing-link" onclick="logoutUser()" title="Logout dari Dashboard">
-            🚪 Keluar
+            <span>🚪</span> <span class="header-btn-text">Keluar</span>
           </button>
 
           <!-- Prototype Hardware Status Pill -->
@@ -2120,24 +2120,36 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
         </div>
         <div>
           <h3>ECOBAT AI Agent Copilot</h3>
-          <p id="ai-copilot-engine-badge">Vercel AI SDK v7 • ToolLoopAgent • gemini-3.5-flash</p>
+          <p id="ai-copilot-engine-badge">Vercel AI SDK v7 • ToolLoopAgent Siaga</p>
         </div>
       </div>
-      <button class="icon-btn" onclick="toggleAiCopilotDrawer()" title="Tutup AI Copilot">✕</button>
+      <div style="display:flex; align-items:center; gap:6px;">
+        <button class="icon-btn" onclick="clearAiCopilotChat()" title="Bersihkan Percakapan Chat" style="width:30px; height:30px; font-size:11px;">🗑️</button>
+        <button class="icon-btn" onclick="toggleAiCopilotDrawer()" title="Tutup AI Copilot" style="width:30px; height:30px;">✕</button>
+      </div>
     </div>
 
     <div class="ai-copilot-quick-prompts">
       <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Lakukan audit kesehatan pack 350V dan keseimbangan sel 16S saat ini')">
         🔍 Audit Pack &amp; 16S
       </button>
-      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Suhu baterai meningkat, optimasi kecepatan kipas PWM dan aktifkan balancer otomatis')">
-        ❄️ Optimasi Kipas PWM
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Optimasi kecepatan kipas pendingin ke 85% dan aktifkan balancer aktif')">
+        ❄️ Set Kipas 85% &amp; Balancer
       </button>
       <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Evaluasi matriks Q-Value DQN untuk rekomendasi pengisian optimal')">
-        🧠 Strategi DQN RL
+        🧠 Rekomendasi DQN RL
       </button>
-      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Hitung proyeksi penghematan ROI untuk armada 120 bus listrik')">
-        💰 Hitung ROI 120 EV
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Hitung proyeksi penghematan ROI untuk armada 100 bus listrik')">
+        💰 Hitung ROI 100 EV
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Bagaimana cara kerja lossless active balancing dibanding passive balancing?')">
+        🔋 Active vs Passive
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Jelaskan standar ISO 26262 ASIL-D pada sistem baterai ini')">
+        🛡️ Standar ASIL-D
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Buka halaman grafik analitik realtime')">
+        📈 Buka Grafik
       </button>
     </div>
 
@@ -2170,6 +2182,6 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
     </form>
   </aside>
 
-  <script src="app.js?v=3.4.0"></script>
+  <script src="app.js?v=3.5.0"></script>
 </body>
 </html>
