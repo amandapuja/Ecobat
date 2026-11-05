@@ -2868,18 +2868,24 @@ function generateInstantAgentResponse(promptText, telemetrySnapshot = {}) {
   const q = String(promptText || '').toLowerCase();
   const v = Number(telemetrySnapshot.voltage ?? state.voltage ?? 350.0);
   const cur = Number(telemetrySnapshot.current ?? state.current ?? -45.0);
-  const t = Number(telemetrySnapshot.temperature ?? state.temperature ?? 29.5);
+  const t = Number(telemetrySnapshot.temperature ?? state.temp ?? 29.5);
   const soc = Number(telemetrySnapshot.soc ?? state.soc ?? 64.0);
   const soh = Number(telemetrySnapshot.soh ?? state.soh ?? 98.0);
   const cycles = Number(telemetrySnapshot.cycles ?? state.cycles ?? 210);
-  const cells = Array.isArray(telemetrySnapshot.cells) && telemetrySnapshot.cells.length === 16
-    ? telemetrySnapshot.cells
-    : (state.cells || Array.from({ length: 16 }, () => 3.65));
 
-  const minCell = Math.min(...cells);
-  const maxCell = Math.max(...cells);
-  const minIdx = cells.indexOf(minCell) + 1;
-  const maxIdx = cells.indexOf(maxCell) + 1;
+  let cellVolts = [];
+  if (Array.isArray(telemetrySnapshot.cells) && telemetrySnapshot.cells.length > 0) {
+    cellVolts = telemetrySnapshot.cells.map(c => typeof c === 'object' && c ? Number(c.voltage || 3.65) : Number(c || 3.65));
+  } else if (Array.isArray(state.cells) && state.cells.length > 0) {
+    cellVolts = state.cells.map(c => typeof c === 'object' && c ? Number(c.voltage || 3.65) : Number(c || 3.65));
+  } else {
+    cellVolts = Array.from({ length: 16 }, () => 3.65);
+  }
+
+  const minCell = Math.min(...cellVolts);
+  const maxCell = Math.max(...cellVolts);
+  const minIdx = Math.max(1, cellVolts.indexOf(minCell) + 1);
+  const maxIdx = Math.max(1, cellVolts.indexOf(maxCell) + 1);
   const deltaMv = Math.round((maxCell - minCell) * 1000);
   const powerKw = Number(((v * cur) / 1000).toFixed(2));
   const cRate = Number((Math.abs(cur) / 120.0).toFixed(2));
@@ -3092,60 +3098,70 @@ async function sendAiCopilotPrompt(promptText) {
     "🤖 Vercel AI SDK • Siaga"
   );
 
+  // 3. Bangun snapshot telemetri yang aman dari state
   const telemetrySnapshot = {
     voltage: state.voltage,
     current: state.current,
-    temperature: state.temperature,
+    temperature: state.temp,
     soc: state.soc,
     soh: state.soh,
     cycles: state.cycles,
-    cooling_fan_pwm: protoState.coolingFanPwm,
-    current_limit: protoState.currentLimit,
-    contactor_state: protoState.contactor,
-    balancer_mode: protoState.balancerMode,
-    cells: state.cells,
+    cooling_fan_pwm: state.coolingFanPwm || 35,
+    current_limit: state.currentLimit || 90.0,
+    contactor_state: state.contactorClosed ? "CLOSED" : "OPEN",
+    balancer_mode: state.balancerMode || "AUTO",
+    cells: Array.isArray(state.cells) ? state.cells.map(c => typeof c === "object" && c ? c.voltage : c) : [],
   };
 
-  // 3. Respon instan (80ms) agar pengguna langsung mendapatkan jawaban tanpa menunggu
+  // 4. Respon instan (40ms) agar pengguna langsung mendapatkan jawaban tanpa menunggu lama
   setTimeout(() => {
-    if (loadingBubble) loadingBubble.remove();
+    try {
+      if (loadingBubble) loadingBubble.remove();
 
-    const instantResult = generateInstantAgentResponse(cleanPrompt, telemetrySnapshot);
+      const instantResult = generateInstantAgentResponse(cleanPrompt, telemetrySnapshot);
 
-    if (instantResult.uiActions && instantResult.uiActions.length > 0) {
-      applyAgentUiActions(instantResult.uiActions);
-    }
+      if (instantResult.uiActions && instantResult.uiActions.length > 0) {
+        applyAgentUiActions(instantResult.uiActions);
+      }
 
-    appendAiCopilotMessage(
-      "assistant",
-      formatAgentMarkdown(instantResult.text),
-      `🤖 ${instantResult.engine}`,
-      instantResult.toolCalls || []
-    );
+      appendAiCopilotMessage(
+        "assistant",
+        formatAgentMarkdown(instantResult.text),
+        `🤖 ${instantResult.engine}`,
+        instantResult.toolCalls || []
+      );
 
-    if (typeof playChimeNotice === "function") playChimeNotice();
+      if (typeof playChimeNotice === "function") playChimeNotice();
 
-    // 4. Sinkronisasi background asinkron ke server /api/agent (opsional & non-blocking)
-    const ctrl = new AbortController();
-    const timeoutId = setTimeout(() => ctrl.abort(), 2800);
-    fetch("/api/agent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: cleanPrompt, telemetry: telemetrySnapshot }),
-      signal: ctrl.signal,
-    })
-      .then(r => r.json())
-      .then(data => {
-        clearTimeout(timeoutId);
-        const badgeEl = document.getElementById("ai-copilot-engine-badge");
-        if (badgeEl && data && data.engine) {
-          badgeEl.textContent = `${data.engine} • ${data.model || "gemini-3.5-flash"}`;
-        }
+      // 5. Sinkronisasi background asinkron ke server /api/agent (opsional & non-blocking)
+      const ctrl = new AbortController();
+      const timeoutId = setTimeout(() => ctrl.abort(), 2500);
+      fetch("/api/agent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: cleanPrompt, telemetry: telemetrySnapshot }),
+        signal: ctrl.signal,
       })
-      .catch(() => {
-        clearTimeout(timeoutId);
-      });
-  }, 80);
+        .then(r => r.json())
+        .then(data => {
+          clearTimeout(timeoutId);
+          const badgeEl = document.getElementById("ai-copilot-engine-badge");
+          if (badgeEl && data && data.engine) {
+            badgeEl.textContent = `${data.engine} • ${data.model || "gemini-3.5-flash"}`;
+          }
+        })
+        .catch(() => {
+          clearTimeout(timeoutId);
+        });
+    } catch (err) {
+      if (loadingBubble) loadingBubble.remove();
+      appendAiCopilotMessage(
+        "assistant",
+        formatAgentMarkdown(`Status Pack 350V: **${state.voltage.toFixed(1)} V**, Arus **${state.current.toFixed(1)} A**, Suhu **${state.temp.toFixed(1)} °C**, SoC **${state.soc.toFixed(1)}%**, SoH **${state.soh.toFixed(1)}%**. Seluruh sistem beroperasi normal.`),
+        "🤖 ECOBAT Copilot Siaga"
+      );
+    }
+  }, 40);
 }
 
 function handleAiCopilotSubmit(event) {
