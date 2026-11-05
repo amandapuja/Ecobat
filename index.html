@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
-  <link rel="stylesheet" href="styles.css?v=3.5.0">
+  <link rel="stylesheet" href="styles.css?v=3.6.0">
 </head>
 <body>
 
@@ -38,6 +38,7 @@
 
         <nav class="landing-nav-links" id="landing-desktop-links">
           <a href="#landing-features">Fitur</a>
+          <a href="#landing-mascot">Maskot &amp; Rotan</a>
           <a href="#landing-mini-simulator">Simulasi Langsung</a>
           <a href="#landing-pillars">Pilar Arsitektur</a>
           <a href="#landing-comparison">Komparasi BMS</a>
@@ -81,6 +82,7 @@
       <!-- Landing Mobile Drawer -->
       <div class="mobile-nav-drawer" id="landing-mobile-drawer">
         <a href="#landing-features" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">✨ Fitur Unggulan</a>
+        <a href="#landing-mascot" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🌿 Maskot &amp; Filosofi Rotan</a>
         <a href="#landing-mini-simulator" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🔋 Simulasi Langsung 60-FPS</a>
         <a href="#landing-pillars" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🏛️ 4 Pilar Arsitektur</a>
         <a href="#landing-comparison" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">⚖️ Komparasi Teknis BMS</a>
@@ -198,6 +200,97 @@
           </p>
         </div>
 
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SLICING: ECOBAT OFFICIAL MASCOT & ROTAN PHILOSOPHY SHOWCASE
+         ========================================================= -->
+    <section class="landing-section-wrap" id="landing-mascot" style="padding-top: 30px;">
+      <div class="landing-section-head">
+        <span class="landing-section-tag">MASKOT RESMI &amp; FILOSOFI ROTAN HIJAU</span>
+        <h2 class="landing-section-title">Kenalkan <span>EcoBot</span>: Maskot Cerdas &amp; Harmoni Material Alam</h2>
+        <p class="landing-section-sub">
+          Wujud sinergi antara kecerdasan buatan Smart AI BMS tingkat enterprise dengan kearifan material serat rotan alami Indonesia yang lentur, tangguh, dan ramah lingkungan.
+        </p>
+      </div>
+
+      <div class="mascot-showcase-grid">
+        <!-- Kartu 1: Gambar Rotan -->
+        <div class="mascot-card">
+          <div class="mascot-badge">
+            <span>🌿</span> Filosofi Tongkat Rotan Alami
+          </div>
+          <div class="mascot-image-wrapper">
+            <img src="assets/ecobat-mascot-rotan.jpg" alt="EcoBot dengan Tongkat Rotan Alami" class="mascot-showcase-img">
+            <div class="mascot-img-overlay">
+              <span class="mascot-floating-tag">🌱 Sustainable Rattan Biomaterial</span>
+            </div>
+          </div>
+          <div class="mascot-content-col">
+            <h3 class="mascot-title">EcoBot Guardian — Kekuatan Serat Rotan Tropis</h3>
+            <p class="mascot-desc">
+              Tongkat rotan melambangkan kelenturan, ketangguhan benturan, dan siklus hidup ramah lingkungan asli Indonesia. Nilai ini menjadi inspirasi utama dalam:
+            </p>
+            <ul class="mascot-features-list">
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Algoritma Active Balancing Adaptif</strong>: Lentur meratakan deviasi tegangan 16S sel tanpa beban disipasi panas.</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Inspirasi Struktur Casing Komposit</strong>: Mengembangkan selongsong pack berbahan biokomposit ringan peredam kejut mekanis.</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Komitmen Nol Emisi Karbon</strong>: Mengurangi limbah baterai dengan perpanjangan usia pakai hingga +3.2 tahun.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Kartu 2: Gambar Maskot -->
+        <div class="mascot-card">
+          <div class="mascot-badge">
+            <span>🤖</span> Maskot AI BMS Companion
+          </div>
+          <div class="mascot-image-wrapper">
+            <img src="assets/ecobat-mascot.jpg" alt="EcoBot Maskot Cerdas Ramah Lingkungan" class="mascot-showcase-img">
+            <div class="mascot-img-overlay">
+              <span class="mascot-floating-tag">⚡ 350V AI Copilot Companion</span>
+            </div>
+          </div>
+          <div class="mascot-content-col">
+            <h3 class="mascot-title">EcoBot Companion — Asisten Cerdas Telemetri Real-Time</h3>
+            <p class="mascot-desc">
+              Sahabat setia insinyur dan operator armada kendaraan listrik. EcoBot terintegrasi langsung dengan mesin Vercel AI SDK di dashboard Anda:
+            </p>
+            <ul class="mascot-features-list">
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Interaksi AI Copilot Dinamis</strong>: Menjawab kondisi suhu, tegangan, dan SoC seketika saat ditanya tanpa template kaku.</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Tindakan Aktuator Otomatis</strong>: Mengatur kecepatan kipas pendingin PWM dan kontaktor secara instan.</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Proteksi Termal &amp; ASIL-D</strong>: Mengawal baterai selalu berada dalam batas aman otomotif ISO 26262.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mascot-cta-banner">
+        <div class="mascot-cta-text">
+          <h4>Ingin Berinteraksi Langsung dengan EcoBot?</h4>
+          <p>Buka dashboard dan klik ikon AI Copilot di pojok kanan bawah untuk mengobrol dan mengaudit baterai secara real-time!</p>
+        </div>
+        <button class="btn btn-md btn-pastel-cyan btn-pill" onclick="quickLoginDemo()">
+          🚀 Coba AI Copilot Sekarang ➔
+        </button>
       </div>
     </section>
 
@@ -2116,11 +2209,11 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
     <div class="ai-copilot-header">
       <div class="ai-copilot-brand">
         <div class="ai-copilot-avatar">
-          <img src="assets/ecobat-icon-new.png" alt="ECOBAT AI" style="width:24px; height:24px; object-fit:contain;">
+          <img src="assets/ecobat-mascot.jpg" alt="EcoBot Mascot" style="width:28px; height:28px; object-fit:cover; border-radius:8px;">
         </div>
         <div>
-          <h3>ECOBAT AI Agent Copilot</h3>
-          <p id="ai-copilot-engine-badge">Vercel AI SDK v7 • ToolLoopAgent Siaga</p>
+          <h3>EcoBot AI Copilot</h3>
+          <p id="ai-copilot-engine-badge">Vercel AI SDK v7 • EcoBot Dynamic Agent</p>
         </div>
       </div>
       <div style="display:flex; align-items:center; gap:6px;">
@@ -2130,41 +2223,35 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
     </div>
 
     <div class="ai-copilot-quick-prompts">
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Kenalkan maskot EcoBot dan apa filosofi tongkat rotannya?')">
+        🌱 Maskot &amp; Rotan
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Berapa suhu baterai saat ini dan apakah aman?')">
+        🌡️ Berapa Suhu?
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Berapa tegangan dan arus pack baterai sekarang?')">
+        ⚡ Tegangan &amp; Arus
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Bagaimana kondisi keseimbangan 16-sel baterai?')">
+        ⚖️ Cek Sel 16S
+      </button>
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Naikkan kecepatan kipas pendingin ke 85%')">
+        ❄️ Set Kipas 85%
+      </button>
       <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Lakukan audit kesehatan pack 350V dan keseimbangan sel 16S saat ini')">
-        🔍 Audit Pack &amp; 16S
-      </button>
-      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Optimasi kecepatan kipas pendingin ke 85% dan aktifkan balancer aktif')">
-        ❄️ Set Kipas 85% &amp; Balancer
-      </button>
-      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Evaluasi matriks Q-Value DQN untuk rekomendasi pengisian optimal')">
-        🧠 Rekomendasi DQN RL
+        🔍 Audit Lengkap
       </button>
       <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Hitung proyeksi penghematan ROI untuk armada 100 bus listrik')">
         💰 Hitung ROI 100 EV
-      </button>
-      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Bagaimana cara kerja lossless active balancing dibanding passive balancing?')">
-        🔋 Active vs Passive
-      </button>
-      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Jelaskan standar ISO 26262 ASIL-D pada sistem baterai ini')">
-        🛡️ Standar ASIL-D
-      </button>
-      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Buka halaman grafik analitik realtime')">
-        📈 Buka Grafik
       </button>
     </div>
 
     <div class="ai-copilot-messages" id="ai-copilot-messages">
       <div class="ai-msg-bubble assistant">
-        <div class="ai-msg-meta">🤖 ECOBAT ToolLoopAgent • Siaga</div>
+        <div class="ai-msg-meta">🤖 EcoBot Copilot • Siaga Real-Time</div>
         <div class="ai-msg-text">
-          Halo! Saya <strong>ECOBAT AI Copilot</strong> yang dibangun menggunakan <strong>Vercel AI SDK (<code>ToolLoopAgent</code>)</strong>. Saya memiliki akses langsung ke 5 <em>tools</em> telemetri &amp; aktuator BMS:
-          <ul style="margin:6px 0 0 16px; font-size:0.75rem;">
-            <li><code>inspectBatteryTelemetry</code> — Audit tegangan, arus, SoC, SoH &amp; ASIL-D</li>
-            <li><code>analyze16SCellBalancing</code> — Cek deviasi ΔV 16 sel seri</li>
-            <li><code>recommendDqnStrategy</code> — Evaluasi Q-Values Reinforcement Learning</li>
-            <li><code>controlBmsHardwareActuator</code> — Ubah kipas PWM, batas arus &amp; balancer</li>
-            <li><code>calculateFleetRoi</code> — Kalkulasi penghematan armada EV</li>
-          </ul>
+          Halo! Saya <strong>EcoBot AI Copilot</strong> yang dibangun dengan <strong>Vercel AI SDK</strong>. Saya terhubung langsung ke telemetri aktif baterai 350V dan aktuator hardware Anda.<br><br>
+          Tanyakan parameter apa saja (suhu, tegangan, arus, sel 16S, filosofi maskot rotan) atau instruksikan kendali aktuator sistem. Saya akan langsung menjawab secara dinamis dan spesifik!
         </div>
       </div>
     </div>
@@ -2173,8 +2260,10 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
       <input
         type="text"
         id="ai-copilot-input"
-        placeholder="Tanyakan kondisi baterai atau perintahkan aktuator BMS..."
+        placeholder="Tanya suhu, tegangan, sel 16S, maskot rotan, atau set kipas..."
         autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
       >
       <button type="submit" class="btn btn-sm btn-pastel-cyan btn-pill" id="ai-copilot-send-btn">
         Kirim ➔
@@ -2182,6 +2271,6 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
     </form>
   </aside>
 
-  <script src="app.js?v=3.6.0"></script>
+  <script src="app.js?v=3.7.0"></script>
 </body>
 </html>

@@ -3095,6 +3095,183 @@ html[data-theme="dark"] .view-tab-btn.active {
   line-height: 1.6;
 }
 
+/* =========================================================
+   ECOBAT MASCOT & ROTAN GREEN INNOVATION SHOWCASE
+   ========================================================= */
+.mascot-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.mascot-card {
+  background: var(--bg-card);
+  border: 1px solid var(--pastel-green-border);
+  border-radius: var(--radius-xl);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+html[data-theme="dark"] .mascot-card {
+  background: rgba(14, 25, 20, 0.82);
+  border: 1px solid rgba(142, 203, 179, 0.28);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+.mascot-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(82, 137, 116, 0.22);
+  border-color: var(--pastel-green);
+}
+
+.mascot-image-wrapper {
+  width: 100%;
+  height: 420px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(135deg, #FAF7F2, #EAF3EF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid var(--border-color);
+}
+
+html[data-theme="dark"] .mascot-image-wrapper {
+  background: linear-gradient(135deg, #101B16, #162820);
+}
+
+.mascot-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.mascot-card:hover .mascot-showcase-img {
+  transform: scale(1.05);
+}
+
+.mascot-img-overlay {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+
+.mascot-floating-tag {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FAF7F2;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mascot-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: var(--pastel-green-bg);
+  color: var(--pastel-green);
+  border: 1px solid var(--pastel-green-border);
+  align-self: flex-start;
+}
+
+.mascot-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mascot-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.mascot-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.mascot-features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.mascot-features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+
+.mascot-features-list li span.check-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--pastel-green-bg);
+  color: var(--pastel-green);
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mascot-cta-banner {
+  margin-top: 28px;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, rgba(82, 137, 116, 0.12), rgba(72, 153, 128, 0.1));
+  border: 1px solid var(--pastel-green-border);
+  border-radius: var(--radius-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.mascot-cta-text h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.mascot-cta-text p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
 /* Header User Profile on Dashboard */
 .user-profile-badge {
   display: flex;
@@ -3199,6 +3376,8 @@ html[data-theme="dark"] .view-tab-btn.active {
   .flow-nodes-container { flex-direction: column; gap: 14px; }
   .flow-wire-svg { display: none; }
   .explainer-top-bar { flex-direction: column; align-items: flex-start; }
+  .mascot-showcase-grid { grid-template-columns: 1fr; gap: 20px; }
+  .mascot-image-wrapper { height: 320px; }
 }
 
 @media (max-width: 768px) {

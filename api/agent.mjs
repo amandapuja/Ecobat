@@ -362,8 +362,13 @@ function runBuiltInAgentFallback(promptText, telemetrySnapshot = {}) {
     customNotes.push(`Proyeksi ROI armada **${units} unit EV** menghasilkan penghematan **$${savings.toLocaleString('en-US')}** (~32%) dan memperpanjang usia pakai pack hingga +3.2 tahun.`);
   }
 
-  // 9. Tanya Jawab Teknis ECOBAT (Q&A)
-  if (q.includes('siapa kamu') || q.includes('apa itu ecobat') || q.includes('tentang')) {
+  // 9. Tanya Jawab Teknis ECOBAT (Q&A) & Maskot
+  if (q.includes('rotan') || q.includes('maskot') || q.includes('tongkat')) {
+    responseTitle = '🌱 Maskot EcoBot & Filosofi Tongkat Rotan';
+    customNotes.push(`**EcoBot** adalah maskot resmi inovasi hijau ECOBAT Technologies.`);
+    customNotes.push(`- **Gambar Rotan (Tongkat Rotan)**: Melambangkan kelenturan, ketangguhan fisik, dan kearifan material hayati alami Indonesia. Nilai ini menjadi inspirasi algoritma *Active Balancing* kami yang luwes meratakan deviasi sel 16S.`);
+    customNotes.push(`- **Gambar Maskot (EcoBot Waving)**: Sahabat cerdas yang memandu telemetri dan kontrol BMS Anda secara interaktif.`);
+  } else if (q.includes('siapa kamu') || q.includes('apa itu ecobat') || q.includes('tentang')) {
     responseTitle = 'ℹ️ Profil & Kapabilitas ECOBAT AI BMS';
     customNotes.push(`**ECOBAT Technologies** adalah platform Battery Management System (BMS) cerdas generasi baru untuk kendaraan listrik (EV) dengan arsitektur 350V nominal dan 16S sel seri.`);
     customNotes.push(`Sistem ini mengintegrasikan **Multi-Output LSTM** (estimasi SoC, SoH, RUL), **Deep Q-Network (DQN) RL** untuk strategi charging otonom, **Lossless Active Balancing** berkapasitansi tinggi (>92% efisiensi muatan), dan kepatuhan standar keselamatan **ISO 26262 ASIL-D**.`);
