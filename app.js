@@ -669,11 +669,13 @@ function renderCellMatrix() {
 
 // Navigation Hub Switcher
 function initNavigationHubs() {
-  const hubBtns = document.querySelectorAll(".nav-hub-btn");
+  const hubBtns = document.querySelectorAll(".nav-hub-btn[data-nav]");
   hubBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       const targetNavId = btn.getAttribute("data-nav");
-      activateNavSection(targetNavId);
+      if (targetNavId) {
+        activateNavSection(targetNavId);
+      }
       const drawer = document.getElementById("mobile-drawer");
       if (drawer) drawer.style.display = "none";
     });
@@ -695,7 +697,19 @@ function toggleDashboardSidebar() {
 }
 
 function activateNavSection(targetNavId) {
-  const hubBtns = document.querySelectorAll(".nav-hub-btn");
+  if (!targetNavId) return;
+
+  // If user is currently on landing view, switch to dashboard view first
+  const landing = document.getElementById("view-landing");
+  const dash = document.getElementById("view-dashboard");
+  if (landing && !landing.classList.contains("hidden") && dash) {
+    if (typeof showDashboardView === "function") {
+      showDashboardView(false);
+    }
+  }
+
+  // Update active status on all navigation buttons
+  const hubBtns = document.querySelectorAll(".nav-hub-btn[data-nav], #desktop-nav .sidebar-nav-btn");
   hubBtns.forEach(b => {
     if (b.getAttribute("data-nav") === targetNavId) {
       b.classList.add("active");
@@ -704,10 +718,22 @@ function activateNavSection(targetNavId) {
     }
   });
 
+  // Switch active section
   document.querySelectorAll(".nav-section").forEach(sec => sec.classList.remove("active"));
   const targetSec = document.getElementById(targetNavId);
   if (targetSec) {
     targetSec.classList.add("active");
+
+    // Smooth scroll to top of section on mobile or if user was scrolled down
+    const headerOffset = 90;
+    const elementPosition = targetSec.getBoundingClientRect().top;
+    if (window.innerWidth <= 1024 || Math.abs(elementPosition) > 250) {
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth"
+      });
+    }
   }
 
   // Auto-close sidebar on mobile/tablet screens
@@ -725,7 +751,7 @@ function activateNavSection(targetNavId) {
     if (chartSoh) chartSoh.resize();
     if (chartRewards) chartRewards.resize();
     if (typeof resizeBatteryCanvas === 'function') resizeBatteryCanvas();
-    updateCharts();
+    if (typeof updateCharts === 'function') updateCharts();
   }, 60);
 }
 
@@ -2896,13 +2922,13 @@ function generateInstantAgentResponse(promptText, telemetrySnapshot = {}) {
   const uiActions = [];
   let responseText = "";
 
-  // 1. Maskot & Tongkat Rotan
-  if (q.includes("rotan") || q.includes("maskot") || q.includes("tongkat") || q.includes("gambar maskot") || q.includes("gambar rotan")) {
-    responseText = `🌱 **Tentang Maskot EcoBot & Filosofi Tongkat Rotan**\n\n` +
-      `Kenalkan **EcoBot**, maskot resmi ramah lingkungan dari ECOBAT Technologies!\n\n` +
-      `1. **Gambar Maskot (EcoBot Waving)**: Melambangkan keramahan teknologi AI yang selalu siaga mendampingi pengguna memantau kesehatan baterai 350V secara real-time.\n` +
-      `2. **Gambar Rotan (EcoBot dengan Tongkat Rotan)**: Tongkat rotan khas Indonesia melambangkan **ketangguhan, kelenturan tinggi, dan keberlanjutan hayati**. Filosofi kelenturan rotan ini kami terapkan dalam arsitektur algoritma *Lossless Active Balancing* yang elastis meratakan tegangan 16-sel tanpa panas resistor bleeder.\n\n` +
-      `*Visual kedua gambar maskot kini dapat Anda lihat langsung di landing page!*`;
+  // 1. Lossless Active Balancing & Arsitektur
+  if (q.includes("active balancing") || q.includes("balancing") || q.includes("penyeimbang") || q.includes("balancer")) {
+    responseText = `⚡ **Arsitektur Lossless Active Balancing 16S ECOBAT**\n\n` +
+      `Sistem kami menerapkan topologi induktif dua arah (*bidirectional inductive active balancing*) untuk pack 350V:\n\n` +
+      `1. **Efisiensi Energi >94%**: Memindahkan muatan dari sel bertegangan tertinggi langsung ke sel terendah tanpa resistor disipasi panas bleeder.\n` +
+      `2. **Arus Penyeimbang Adaptif**: Arus balancing hingga **2.5A** diaktifkan otomatis ketika deviasi sel ΔV melampaui ambang batas 15 mV.\n` +
+      `3. **Dukungan Algoritma AI**: Penyeimbangan dikombinasikan dengan estimasi internal resistance (R_int) dan prediksi kurva OCV untuk memitigasi degradasi sel dini.`;
   }
   // 2. Kipas PWM / Pendingin Termal (Bisa pertanyaan atau perintah)
   else if (q.includes("kipas") || q.includes("fan") || q.includes("pwm")) {
@@ -3073,7 +3099,7 @@ function generateInstantAgentResponse(promptText, telemetrySnapshot = {}) {
       `1. 🔍 **Cek Telemetri**: Tanyakan suhu, tegangan pack, arus, SoC, SoH, atau kondisi 16-sel baterai.\n` +
       `2. ❄️ **Kendali Aktuator**: Minta saya mengatur kecepatan kipas PWM, batas arus, mode active balancer, atau kontaktor.\n` +
       `3. 🧠 **Rekomendasi AI**: Evaluasi agen DQN RL atau estimasi sisa umur pakai baterai (RUL).\n` +
-      `4. 🌱 **Informasi Maskot & Rotan**: Tanyakan filosofi maskot EcoBot dan tongkat rotan ramah lingkungan kami!\n\n` +
+      `4. ⚡ **Lossless Active Balancing**: Tanyakan efisiensi atau status transfer muatan 16S.\n\n` +
       `*Apa yang ingin Anda tanyakan atau kendalikan saat ini?*`;
   }
   // 16. Audit Menyeluruh (Hanya jika pengguna meminta audit lengkap)
@@ -3101,7 +3127,7 @@ function generateInstantAgentResponse(promptText, telemetrySnapshot = {}) {
     responseText = `🤖 **Respon EcoBot AI Telemetri**\n\n` +
       `Mengenai pertanyaan Anda (*"${promptText}"*):\n\n` +
       `Saat ini sistem baterai beroperasi pada tegangan **${v.toFixed(1)} V**, arus **${cur.toFixed(1)} A**, suhu **${t.toFixed(1)} °C**, dengan kapasitas **${soc.toFixed(1)}% (SoH ${soh.toFixed(1)}%)** dan deviasi sel **ΔV = ${deltaMv} mV**.\n\n` +
-      `*Anda dapat menanyakan parameter spesifik (misal: "berapa suhu", "cek sel 16S"), meminta kendali aktuator (misal: "set kipas 80%"), atau menanyakan maskot rotan kami!*`;
+      `*Anda dapat menanyakan parameter spesifik (misal: "berapa suhu", "cek sel 16S"), meminta kendali aktuator (misal: "set kipas 80%"), atau menginstruksikan audit baterai!*`;
   }
 
   return {

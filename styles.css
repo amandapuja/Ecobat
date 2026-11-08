@@ -496,12 +496,29 @@ html[data-theme="dark"] .status-pill.paused {
   border-radius: 0 0 24px 24px;
 }
 
+.mobile-nav-drawer .landing-drawer-link,
 .mobile-nav-drawer .nav-hub-btn {
   width: 100%;
+  display: flex;
+  align-items: center;
   justify-content: flex-start;
   text-decoration: none;
   padding: 10px 16px;
   border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.mobile-nav-drawer .landing-drawer-link:hover,
+.mobile-nav-drawer .nav-hub-btn:hover {
+  background: var(--pastel-green-bg);
+  color: var(--pastel-green);
+  border-color: var(--pastel-green-border);
 }
 
 .mobile-drawer-actions-row {
@@ -528,8 +545,8 @@ html[data-theme="dark"] .status-pill.paused {
 }
 
 .dashboard-sidebar {
-  width: 270px;
-  min-width: 270px;
+  width: 295px;
+  min-width: 295px;
   flex-shrink: 0;
   position: sticky;
   top: 88px;
@@ -604,14 +621,14 @@ html[data-theme="dark"] .dashboard-sidebar {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
+  gap: 10px;
+  padding: 10px 12px;
   border-radius: var(--radius-md);
   background: transparent;
   border: 1px solid transparent;
   color: var(--text-muted);
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   font-weight: 600;
   cursor: pointer;
   text-align: left;
@@ -623,8 +640,8 @@ html[data-theme="dark"] .dashboard-sidebar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 8px;
   background: var(--bg-input);
   color: var(--text-muted);
@@ -635,8 +652,9 @@ html[data-theme="dark"] .dashboard-sidebar {
 .sidebar-nav-btn .nav-btn-text {
   flex: 1;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  text-overflow: clip;
+  letter-spacing: -0.01em;
 }
 
 .sidebar-nav-btn .nav-btn-indicator {

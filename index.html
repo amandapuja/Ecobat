@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
-  <link rel="stylesheet" href="styles.css?v=3.6.0">
+  <link rel="stylesheet" href="styles.css?v=3.8.0">
 </head>
 <body>
 
@@ -38,7 +38,6 @@
 
         <nav class="landing-nav-links" id="landing-desktop-links">
           <a href="#landing-features">Fitur</a>
-          <a href="#landing-mascot">Maskot &amp; Rotan</a>
           <a href="#landing-mini-simulator">Simulasi Langsung</a>
           <a href="#landing-pillars">Pilar Arsitektur</a>
           <a href="#landing-comparison">Komparasi BMS</a>
@@ -81,13 +80,12 @@
 
       <!-- Landing Mobile Drawer -->
       <div class="mobile-nav-drawer" id="landing-mobile-drawer">
-        <a href="#landing-features" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">✨ Fitur Unggulan</a>
-        <a href="#landing-mascot" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🌿 Maskot &amp; Filosofi Rotan</a>
-        <a href="#landing-mini-simulator" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🔋 Simulasi Langsung 60-FPS</a>
-        <a href="#landing-pillars" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🏛️ 4 Pilar Arsitektur</a>
-        <a href="#landing-comparison" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">⚖️ Komparasi Teknis BMS</a>
-        <a href="#landing-calculator" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">💰 Kalkulator ROI Armada</a>
-        <a href="#landing-standards" class="nav-hub-btn" onclick="closeLandingMobileDrawer()">🛡️ Standar ISO 26262 ASIL-D</a>
+        <a href="#landing-features" class="landing-drawer-link" onclick="closeLandingMobileDrawer()">✨ Fitur Unggulan</a>
+        <a href="#landing-mini-simulator" class="landing-drawer-link" onclick="closeLandingMobileDrawer()">🔋 Simulasi Langsung 60-FPS</a>
+        <a href="#landing-pillars" class="landing-drawer-link" onclick="closeLandingMobileDrawer()">🏛️ 4 Pilar Arsitektur</a>
+        <a href="#landing-comparison" class="landing-drawer-link" onclick="closeLandingMobileDrawer()">⚖️ Komparasi Teknis BMS</a>
+        <a href="#landing-calculator" class="landing-drawer-link" onclick="closeLandingMobileDrawer()">💰 Kalkulator ROI Armada</a>
+        <a href="#landing-standards" class="landing-drawer-link" onclick="closeLandingMobileDrawer()">🛡️ Standar ISO 26262 ASIL-D</a>
         <div class="mobile-drawer-actions-row">
           <div class="status-pill status-online" style="font-size:0.72rem; padding:6px 12px;">
             <span class="status-dot"></span>
@@ -203,96 +201,7 @@
       </div>
     </section>
 
-    <!-- =========================================================
-         SLICING: ECOBAT OFFICIAL MASCOT & ROTAN PHILOSOPHY SHOWCASE
-         ========================================================= -->
-    <section class="landing-section-wrap" id="landing-mascot" style="padding-top: 30px;">
-      <div class="landing-section-head">
-        <span class="landing-section-tag">MASKOT RESMI &amp; FILOSOFI ROTAN HIJAU</span>
-        <h2 class="landing-section-title">Kenalkan <span>EcoBot</span>: Maskot Cerdas &amp; Harmoni Material Alam</h2>
-        <p class="landing-section-sub">
-          Wujud sinergi antara kecerdasan buatan Smart AI BMS tingkat enterprise dengan kearifan material serat rotan alami Indonesia yang lentur, tangguh, dan ramah lingkungan.
-        </p>
-      </div>
 
-      <div class="mascot-showcase-grid">
-        <!-- Kartu 1: Gambar Rotan -->
-        <div class="mascot-card">
-          <div class="mascot-badge">
-            <span>🌿</span> Filosofi Tongkat Rotan Alami
-          </div>
-          <div class="mascot-image-wrapper">
-            <img src="assets/ecobat-mascot-rotan.jpg" alt="EcoBot dengan Tongkat Rotan Alami" class="mascot-showcase-img">
-            <div class="mascot-img-overlay">
-              <span class="mascot-floating-tag">🌱 Sustainable Rattan Biomaterial</span>
-            </div>
-          </div>
-          <div class="mascot-content-col">
-            <h3 class="mascot-title">EcoBot Guardian — Kekuatan Serat Rotan Tropis</h3>
-            <p class="mascot-desc">
-              Tongkat rotan melambangkan kelenturan, ketangguhan benturan, dan siklus hidup ramah lingkungan asli Indonesia. Nilai ini menjadi inspirasi utama dalam:
-            </p>
-            <ul class="mascot-features-list">
-              <li>
-                <span class="check-icon">✓</span>
-                <div><strong>Algoritma Active Balancing Adaptif</strong>: Lentur meratakan deviasi tegangan 16S sel tanpa beban disipasi panas.</div>
-              </li>
-              <li>
-                <span class="check-icon">✓</span>
-                <div><strong>Inspirasi Struktur Casing Komposit</strong>: Mengembangkan selongsong pack berbahan biokomposit ringan peredam kejut mekanis.</div>
-              </li>
-              <li>
-                <span class="check-icon">✓</span>
-                <div><strong>Komitmen Nol Emisi Karbon</strong>: Mengurangi limbah baterai dengan perpanjangan usia pakai hingga +3.2 tahun.</div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Kartu 2: Gambar Maskot -->
-        <div class="mascot-card">
-          <div class="mascot-badge">
-            <span>🤖</span> Maskot AI BMS Companion
-          </div>
-          <div class="mascot-image-wrapper">
-            <img src="assets/ecobat-mascot.jpg" alt="EcoBot Maskot Cerdas Ramah Lingkungan" class="mascot-showcase-img">
-            <div class="mascot-img-overlay">
-              <span class="mascot-floating-tag">⚡ 350V AI Copilot Companion</span>
-            </div>
-          </div>
-          <div class="mascot-content-col">
-            <h3 class="mascot-title">EcoBot Companion — Asisten Cerdas Telemetri Real-Time</h3>
-            <p class="mascot-desc">
-              Sahabat setia insinyur dan operator armada kendaraan listrik. EcoBot terintegrasi langsung dengan mesin Vercel AI SDK di dashboard Anda:
-            </p>
-            <ul class="mascot-features-list">
-              <li>
-                <span class="check-icon">✓</span>
-                <div><strong>Interaksi AI Copilot Dinamis</strong>: Menjawab kondisi suhu, tegangan, dan SoC seketika saat ditanya tanpa template kaku.</div>
-              </li>
-              <li>
-                <span class="check-icon">✓</span>
-                <div><strong>Tindakan Aktuator Otomatis</strong>: Mengatur kecepatan kipas pendingin PWM dan kontaktor secara instan.</div>
-              </li>
-              <li>
-                <span class="check-icon">✓</span>
-                <div><strong>Proteksi Termal &amp; ASIL-D</strong>: Mengawal baterai selalu berada dalam batas aman otomotif ISO 26262.</div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="mascot-cta-banner">
-        <div class="mascot-cta-text">
-          <h4>Ingin Berinteraksi Langsung dengan EcoBot?</h4>
-          <p>Buka dashboard dan klik ikon AI Copilot di pojok kanan bawah untuk mengobrol dan mengaudit baterai secara real-time!</p>
-        </div>
-        <button class="btn btn-md btn-pastel-cyan btn-pill" onclick="quickLoginDemo()">
-          🚀 Coba AI Copilot Sekarang ➔
-        </button>
-      </div>
-    </section>
 
     <!-- =========================================================
          SLICING 3: INTERACTIVE LIVE BATTERY SIMULATOR (ON LANDING PAGE)
@@ -886,7 +795,7 @@
         </div>
 
         <nav class="sidebar-nav-list" id="desktop-nav">
-          <button class="sidebar-nav-btn nav-hub-btn active" data-nav="nav-dashboard">
+          <button class="sidebar-nav-btn nav-hub-btn active" data-nav="nav-dashboard" onclick="activateNavSection('nav-dashboard')">
             <span class="nav-btn-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             </span>
@@ -894,7 +803,7 @@
             <span class="nav-btn-indicator">●</span>
           </button>
 
-          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-explainer">
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-explainer" onclick="activateNavSection('nav-explainer')">
             <span class="nav-btn-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><polyline points="10 10 8 13 12 13 10 16"/></svg>
             </span>
@@ -902,7 +811,7 @@
             <span class="nav-btn-indicator">●</span>
           </button>
 
-          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-prototype">
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-prototype" onclick="activateNavSection('nav-prototype')">
             <span class="nav-btn-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 4v10M8 8h8M5 12h14"/></svg>
             </span>
@@ -910,7 +819,7 @@
             <span class="nav-btn-indicator">●</span>
           </button>
 
-          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-analytics">
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-analytics" onclick="activateNavSection('nav-analytics')">
             <span class="nav-btn-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </span>
@@ -918,7 +827,7 @@
             <span class="nav-btn-indicator">●</span>
           </button>
 
-          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-charts">
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-charts" onclick="activateNavSection('nav-charts')">
             <span class="nav-btn-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
             </span>
@@ -926,7 +835,7 @@
             <span class="nav-btn-indicator">●</span>
           </button>
 
-          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-research">
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-research" onclick="activateNavSection('nav-research')">
             <span class="nav-btn-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             </span>
@@ -934,7 +843,7 @@
             <span class="nav-btn-indicator">●</span>
           </button>
 
-          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-about">
+          <button class="sidebar-nav-btn nav-hub-btn" data-nav="nav-about" onclick="activateNavSection('nav-about')">
             <span class="nav-btn-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             </span>
@@ -2223,8 +2132,8 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
     </div>
 
     <div class="ai-copilot-quick-prompts">
-      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Kenalkan maskot EcoBot dan apa filosofi tongkat rotannya?')">
-        🌱 Maskot &amp; Rotan
+      <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Jelaskan cara kerja active balancing 16S sel baterai')">
+        ⚡ Active Balancing
       </button>
       <button class="ai-prompt-chip" onclick="sendAiCopilotPrompt('Berapa suhu baterai saat ini dan apakah aman?')">
         🌡️ Berapa Suhu?
@@ -2251,7 +2160,7 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
         <div class="ai-msg-meta">🤖 EcoBot Copilot • Siaga Real-Time</div>
         <div class="ai-msg-text">
           Halo! Saya <strong>EcoBot AI Copilot</strong> yang dibangun dengan <strong>Vercel AI SDK</strong>. Saya terhubung langsung ke telemetri aktif baterai 350V dan aktuator hardware Anda.<br><br>
-          Tanyakan parameter apa saja (suhu, tegangan, arus, sel 16S, filosofi maskot rotan) atau instruksikan kendali aktuator sistem. Saya akan langsung menjawab secara dinamis dan spesifik!
+          Tanyakan parameter apa saja (suhu, tegangan, arus, sel 16S, efisiensi active balancing) atau instruksikan kendali aktuator sistem. Saya akan langsung menjawab secara dinamis dan spesifik!
         </div>
       </div>
     </div>
@@ -2260,7 +2169,7 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
       <input
         type="text"
         id="ai-copilot-input"
-        placeholder="Tanya suhu, tegangan, sel 16S, maskot rotan, atau set kipas..."
+        placeholder="Tanya suhu, tegangan, sel 16S, active balancing, atau set kipas..."
         autocomplete="off"
         autocorrect="off"
         autocapitalize="off"
@@ -2271,6 +2180,6 @@ DoD_pen     = max(0, Depth_of_Discharge - 80.0) * 0.00003
     </form>
   </aside>
 
-  <script src="app.js?v=3.7.0"></script>
+  <script src="app.js?v=3.8.0"></script>
 </body>
 </html>
